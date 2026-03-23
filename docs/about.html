@@ -7,82 +7,108 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <style>
-        body { background: #FFFFFF; }
-        .doc-page { max-width: 900px; margin: 120px auto 60px; padding: 0 24px; }
-        .doc-hero { text-align: center; margin-bottom: 48px; }
-        .doc-hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 16px; color: #1A1A1A; }
-        .doc-hero p { font-size: 18px; color: #5F6368; }
-        .doc-content { background: #F8F9FA; border-radius: 20px; padding: 40px; margin-bottom: 32px; }
-        .doc-content h2 { font-size: 28px; color: #1A1A1A; margin: 32px 0 16px; }
-        .doc-content h3 { font-size: 20px; color: #1A1A1A; margin: 24px 0 12px; }
-        .doc-content p { font-size: 15px; color: #5F6368; line-height: 1.8; margin-bottom: 16px; }
-        .doc-content ul { margin: 16px 0; padding-left: 20px; }
-        .doc-content li { font-size: 15px; color: #5F6368; line-height: 1.8; margin-bottom: 8px; }
-        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #00C853; font-size: 14px; margin-bottom: 24px; }
+        body { background: #F5F7FA; }
+        .page-container { max-width: 900px; margin: 100px auto 60px; padding: 0 24px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { font-size: 32px; font-weight: 700; color: #1F2A3E; margin-bottom: 12px; }
+        .page-header p { font-size: 16px; color: #5A6874; }
+        .content-card { background: #F5F7FA; border-radius: 16px; padding: 32px; margin-bottom: 24px; border: 1px solid #E8ECF0; }
+        .content-card h2 { font-size: 22px; font-weight: 600; color: #1F2A3E; margin-bottom: 16px; }
+        .content-card h3 { font-size: 18px; font-weight: 600; color: #1F2A3E; margin: 24px 0 12px; }
+        .content-card p { font-size: 15px; color: #5A6874; line-height: 1.8; margin-bottom: 16px; }
+        .content-card ul { margin: 16px 0; padding-left: 24px; }
+        .content-card li { font-size: 15px; color: #5A6874; line-height: 1.8; margin-bottom: 8px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #3B82F6; font-size: 14px; margin-bottom: 24px; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .contact-box { background: #F5F7FA; border-radius: 12px; padding: 20px; margin-top: 24px; }
+        .contact-box p { margin-bottom: 8px; }
     </style>
 </head>
 <body>
-    <header class="top-nav">
-        <div class="nav-left">
-            <a href="../index.html" class="logo">
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <rect width="32" height="32" rx="8" fill="#00C853"/>
-                    <path d="M10 16L14 20L22 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect width="32" height="32" rx="8" fill="#EEF3F9"/>
+                    <path d="M10 16L14 20L22 12" stroke="#1F2A3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span>AICG视频创作软件</span>
-            </a>
-        </div>
-        <nav class="nav-menu">
-            <a href="quickstart.html" class="nav-link">使用手册</a>
-            <a href="quickstart.html" class="nav-link">软件下载</a>
-            <a href="about.html" class="nav-link">关于我们</a>
-        </nav>
-        <div class="nav-right">
-            <a href="#" class="btn-console">暂未开放</a>
-            <a href="#" class="btn-login">暂未开放</a>
+            </div>
+            
+            <div class="search-bar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A6874" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" placeholder="搜索软件、工具...">
+                <button class="filter-btn">筛选</button>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link">探索</a>
+                <a href="tools.html" class="nav-link">软件</a>
+                <a href="about.html" class="nav-link active">关于</a>
+            </nav>
         </div>
     </header>
-    <div class="main-container">
-        <main class="doc-page">
-            <a href="../index.html" class="back-link">← 返回首页</a>
+
+    <main class="page-container">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+        
+        <div class="page-header">
+            <h1>关于我们</h1>
+            <p>🎬 10年影视人，做了个AI软件</p>
+        </div>
+        
+        <div class="content-card">
+            <p>你好，我是这款软件的开发者，也是和你一样在创作路上摸爬滚打了10年的影视从业者。</p>
+            <p>做这款软件的原因很简单：市面上的AI工具很多，但真正懂创作者痛点的很少。我想做一款我自己也愿意每天用的AI工具，所以它诞生了。</p>
+            <p>目前集成了主流的AI视频与图片生成能力，但我的规划不止于此：</p>
+            <ul>
+                <li>✅ 持续接入更多靠谱的API，让功能越来越强</li>
+                <li>✅ 配套更新实战教程，不让你拿着工具无从下手</li>
+                <li>✅ 你的建议，我会认真看、认真回</li>
+            </ul>
+            <p>一个人做开发，最怕闭门造车。如果你感兴趣，或者有想法想交流，欢迎来群里找我：</p>
             
-            <div class="doc-hero">
-                <h1>关于我们</h1>
-                <p>🎬 10年影视人，做了个AI软件</p>
-            </div>
-            
-            <div class="doc-content">
-                <p>你好，我是这款软件的开发者，也是和你一样在创作路上摸爬滚打了10年的影视从业者。</p>
-                <p>做这款软件的原因很简单：市面上的AI工具很多，但真正懂创作者痛点的很少。我想做一款我自己也愿意每天用的AI工具，所以它诞生了。</p>
-                <p>目前集成了主流的AI视频与图片生成能力，但我的规划不止于此：</p>
-                <ul>
-                    <li>持续接入更多靠谱的API，让功能越来越强</li>
-                    <li>配套更新实战教程，不让你拿着工具无从下手</li>
-                    <li>你的建议，我会认真看、认真回</li>
-                </ul>
-                <p>一个人做开发，最怕闭门造车。如果你感兴趣，或者有想法想交流，欢迎来群里找我：</p>
-                <p>QQ群：18737262</p>
+            <div class="contact-box">
+                <p><strong>🔗 QQ群：18737262</strong></p>
                 <p>让我们一起，用AI重新定义创作。</p>
             </div>
-        </main>
-    </div>
+        </div>
+        
+        <div class="content-card">
+            <h2>常见问题</h2>
+            
+            <h3>Q1: 如何下载软件？</h3>
+            <p>点击软件卡片上的"下载"按钮即可开始下载。</p>
+            
+            <h3>Q2: 软件支持哪些系统？</h3>
+            <p>目前所有软件均支持 Windows 11 系统。</p>
+            
+            <h3>Q3: 如何联系技术支持？</h3>
+            <p>可以加入 QQ 群 18737262 联系我们。</p>
+        </div>
+    </main>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
+                <h4>AICG视频创作软件</h4>
+                <p>优质软件下载平台</p>
+            </div>
+            <div class="footer-section">
                 <h4>产品</h4>
-                <a href="tools.html">开发工具</a>
+                <a href="tools.html">软件下载</a>
             </div>
             <div class="footer-section">
-                <h4>文档</h4>
-                <a href="quickstart.html">快速开始</a>
-            </div>
-            <div class="footer-section">
-                <h4>公司</h4>
+                <h4>关于</h4>
                 <a href="about.html">关于我们</a>
+                <a href="quickstart.html">使用帮助</a>
             </div>
             <div class="footer-section">
-                <h4>支持</h4>
-                <a href="about.html">关于我们</a>
+                <h4>联系</h4>
+                <p>QQ群：18737262</p>
             </div>
         </div>
         <div class="footer-bottom">
