@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICG视频创作软件</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <header class="top-nav">
+        <div class="nav-left">
+            <a href="index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#00C853"/>
+                    <path d="M10 16L14 20L22 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>AICG视频创作软件</span>
+            </a>
+        </div>
+        <nav class="nav-menu">
+            <a href="docs/quickstart.html" class="nav-link">使用手册</a>
+            <a href="docs/quickstart.html" class="nav-link">软件下载</a>
+            <a href="docs/about.html" class="nav-link">关于我们</a>
+        </nav>
+        <div class="nav-right">
+            <a href="#" class="btn-console">暂未开放</a>
+            <a href="#" class="btn-login">暂未开放</a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <main>
+            <section class="hero">
+                <div class="hero-badge">✨ 智能AI创作平台</div>
+                <h1>AICG工具专注于AI视频生成工具打造</h1>
+                <p class="hero-desc">深受数百专业创作者的信赖<br>强大的 AI 能力，简单的 API 调用，让您加速销量与品质</p>
+                <div class="hero-actions">
+                    <a href="docs/quickstart.html" class="btn-primary">立即下载</a>
+                    <a href="docs/api-reference.html" class="btn-secondary">查看详情</a>
+                </div>
+            </section>
+
+            <section class="features">
+                <h2 class="features-title">核心功能</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎬</div>
+                        <h3>AI视频生成</h3>
+                        <p>输入文字描述，一键生成精美视频</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>智能素材库</h3>
+                        <p>海量模板素材，随心所欲创作</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>高效渲染</h3>
+                        <p>云端快速渲染，轻松导出成品</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <div class="demo-container">
+                    <div class="demo-header">
+                        <span class="demo-dot"></span>
+                        <span class="demo-dot" style="background:#FFD700"></span>
+                        <span class="demo-dot" style="background:#00FF00"></span>
+                    </div>
+                    <div class="demo-chat" id="demoChat">
+                        <div class="chat-avatar">🤖</div>
+                        <div class="ai-bubble">
+                            <p>您好！我是AICG智能助手，有什么可以帮您的？</p>
+                        </div>
+                    </div>
+                    <div class="demo-input">
+                        <input type="text" id="chatInput" placeholder="有问题尽管问我..." />
+                        <button class="send-btn" id="sendBtn">暂未开放</button>
+                    </div>
+                    <div class="quick-prompts">
+                        <span class="prompt-tag" data-msg="提示词优化">提示词优化</span>
+                        <span class="prompt-tag" data-msg="帮我写一段广告文案">帮我写一段广告文案</span>
+                        <span class="prompt-tag" data-msg="生成一个短视频脚本">生成一个短视频脚本</span>
+                        <span class="prompt-tag" data-msg="设计一个Logo">设计一个Logo</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>产品</h4>
+                <a href="docs/tools.html">开发工具</a>
+            </div>
+            <div class="footer-section">
+                <h4>文档</h4>
+                <a href="docs/quickstart.html">快速开始</a>
+            </div>
+            <div class="footer-section">
+                <h4>公司</h4>
+                <a href="docs/about.html">关于我们</a>
+            </div>
+            <div class="footer-section">
+                <h4>支持</h4>
+                <a href="docs/faq.html">常见问题</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 AICG视频创作软件. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
