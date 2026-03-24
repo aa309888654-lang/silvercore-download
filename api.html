@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API文档 - AICG视频创作软件</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="小天AICG API申请地址大全 - 收录国内外主流AI模型API申请入口，快速获取API密钥。">
+    <meta name="keywords" content="API申请地址,AI API,OpenAI API,Claude API,DeepSeek API">
+    <title>API申请地址大全 - 小天AICG</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background: #EDF2F9; font-family: 'Inter', system-ui, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .page-header {
-            background: white;
-            border-bottom: 1px solid #E5E7EB;
+        body {
+            background: #EDF2F9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #DDE4ED;
             padding: 16px 0;
             position: sticky;
             top: 0;
@@ -20,7 +31,7 @@
         }
         
         .header-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 32px;
             display: flex;
@@ -28,259 +39,1151 @@
             justify-content: space-between;
         }
         
-        .logo-link {
+        .logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
         }
         
+        .logo svg { width: 36px; height: 36px; }
         .logo-text { font-size: 18px; font-weight: 700; color: #1F2937; }
         
-        .nav-links { display: flex; gap: 8px; }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
         .nav-link {
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
             font-size: 14px;
             font-weight: 500;
             color: #6B7280;
             text-decoration: none;
             transition: all 0.2s;
         }
-        .nav-link:hover { background: #F3F4F6; color: #1F2937; }
+        .nav-link:hover { background: #EEF3FA; color: #1F2937; }
         .nav-link.active { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
         
-        .main-content { max-width: 1000px; margin: 0 auto; padding: 48px 32px; }
-        
-        .page-title { font-size: 36px; font-weight: 800; color: #1F2937; margin-bottom: 8px; }
-        .page-subtitle { font-size: 16px; color: #6B7280; margin-bottom: 40px; }
-        
-        .api-section { margin-bottom: 48px; }
-        
-        .api-card {
-            background: white;
-            border-radius: 16px;
-            border: 1px solid #E5E7EB;
-            overflow: hidden;
-            margin-bottom: 16px;
-        }
-        
-        .api-header {
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .api-header:hover { background: #F9FAFB; }
-        
-        .method {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
+        .nav-cta {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
-            min-width: 60px;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            text-decoration: none;
+            margin-left: 8px;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+
+        /* Hero区域 */
+        .hero {
+            background: linear-gradient(135deg, #EEF3FA 0%, #F8FAFC 100%);
+            padding: 60px 32px;
             text-align: center;
         }
         
-        .method.post { background: #DBEAFE; color: #2563EB; }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #1F2937;
+            margin-bottom: 16px;
+        }
         
-        .api-path { font-family: monospace; font-size: 14px; color: #1F2937; flex: 1; }
-        .api-desc { font-size: 14px; color: #6B7280; }
+        .hero h1 span {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         
-        .api-toggle {
-            width: 24px;
-            height: 24px;
+        .hero p {
+            font-size: 18px;
+            color: #6B7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 32px; font-weight: 700; color: #3B82F6; }
+        .stat-label { font-size: 14px; color: #9CA3AF; margin-top: 4px; }
+
+        /* 主内容 */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px 32px;
+        }
+
+        /* 提示卡片 */
+        .tips-card {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .tips-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #9CA3AF;
-            transition: transform 0.2s;
+            gap: 10px;
         }
         
-        .api-card.open .api-toggle { transform: rotate(180deg); }
-        
-        .api-body {
-            display: none;
-            padding: 0 24px 24px;
-            border-top: 1px solid #F3F4F6;
+        .tips-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
         
-        .api-card.open .api-body { display: block; }
-        
-        .code-block {
-            background: #1F2937;
-            border-radius: 8px;
+        .tip-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
             padding: 16px;
-            margin: 16px 0;
-            overflow-x: auto;
-        }
-        
-        .code-block code {
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 13px;
-            color: #E5E7EB;
+            font-size: 14px;
             line-height: 1.6;
         }
         
-        .param-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
+        .tip-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* 区块 */
+        .section { margin-bottom: 48px; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
         }
         
-        .param-table th,
-        .param-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #F3F4F6;
+        .section-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .section-icon.blue { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+        .section-icon.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+        .section-icon.green { background: linear-gradient(135deg, #10B981, #059669); }
+        .section-icon.orange { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .section-icon svg { width: 24px; height: 24px; }
+        
+        .section-title { font-size: 24px; font-weight: 700; color: #1F2937; }
+        
+        .section-count {
+            font-size: 13px;
+            color: #9CA3AF;
+            background: #F3F4F6;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-left: auto;
+        }
+
+        /* API网格 */
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        /* API卡片 */
+        .api-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s;
+        }
+        
+        .api-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+        
+        .api-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .api-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .api-info h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1F2937;
+            margin: 0 0 4px 0;
+        }
+        
+        .api-info .company { font-size: 13px; color: #9CA3AF; }
+        
+        .api-url {
+            background: #F9FAFB;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        
+        .api-url code {
+            font-size: 13px;
+            color: #3B82F6;
+            word-break: break-all;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+        
+        .copy-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            background: white;
+            color: #6B7280;
+            border: 1px solid #E5E7EB;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .copy-btn:hover {
+            background: #EEF3FA;
+            color: #3B82F6;
+        }
+        
+        .api-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .api-feature {
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            background: #F3F4F6;
+            color: #6B7280;
+        }
+        
+        .api-feature.highlight {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3B82F6;
+        }
+        
+        .api-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid #F3F4F6;
+        }
+        
+        .api-price {
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .api-price.free { color: #10B981; }
+        .api-price.paid { color: #F59E0B; }
+        
+        .btn-visit {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 10px;
             font-size: 14px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s;
         }
         
-        .param-table th { background: #F9FAFB; font-weight: 600; color: #374151; }
-        .param-table td { color: #6B7280; }
-        .param-name { font-family: monospace; color: #2563EB; font-weight: 500; }
-        .param-required { color: #DC2626; font-size: 12px; }
+        .btn-visit:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-visit svg { width: 16px; height: 16px; }
+
+        /* 页脚 */
+        .footer {
+            background: #111827;
+            color: #9CA3AF;
+            padding: 40px 32px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer p { font-size: 13px; margin: 0; }
+        .footer a { color: #3B82F6; text-decoration: none; }
+
+        @media (max-width: 1024px) {
+            .tips-list { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .api-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .tips-list { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <header class="page-header">
+    <header class="header">
         <div class="header-container">
-            <a href="../index.html" class="logo-link">
-                <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
-                    <rect width="40" height="40" rx="10" fill="url(#lg)"/>
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="12" fill="url(#logoGrad)"/>
                     <circle cx="20" cy="16" r="7" stroke="white" stroke-width="2"/>
                     <path d="M12 30C12 25 16 22 20 22C24 22 28 25 28 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                    <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#2563EB"/></linearGradient></defs>
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#3B82F6"/>
+                            <stop offset="100%" stop-color="#2563EB"/>
+                        </linearGradient>
+                    </defs>
                 </svg>
-                <span class="logo-text">AICG</span>
+                <span class="logo-text">小天AICG</span>
             </a>
             <nav class="nav-links">
-                <a href="../index.html" class="nav-link">首页</a>
+                <a href="index.html" class="nav-link">首页</a>
                 <a href="tools.html" class="nav-link">软件</a>
                 <a href="models.html" class="nav-link">模型</a>
                 <a href="api.html" class="nav-link active">API</a>
+                <a href="about.html" class="nav-link">关于</a>
+                <a href="tools.html" class="nav-cta">立即下载</a>
             </nav>
         </div>
     </header>
 
+    <section class="hero">
+        <h1>🔑 <span>API申请</span>地址大全</h1>
+        <p>收录国内外主流AI模型API申请入口，快速获取API密钥开始开发</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-value">25+</div>
+                <div class="stat-label">API平台</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">免费</div>
+                <div class="stat-label">多个平台有免费额度</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">实时</div>
+                <div class="stat-label">更新维护</div>
+            </div>
+        </div>
+    </section>
+
     <main class="main-content">
-        <h1 class="page-title">API 文档</h1>
-        <p class="page-subtitle">通过 API 接入 AICG 视频与图片生成能力</p>
-
-        <div class="api-section">
-            <h2 style="font-size: 20px; font-weight: 600; color: #1F2937; margin-bottom: 20px;">主要接口</h2>
-            
-            <!-- 文生图 -->
-            <div class="api-card">
-                <div class="api-header" onclick="toggleApi(this)">
-                    <span class="method post">POST</span>
-                    <span class="api-path">/v1/images/generations</span>
-                    <span class="api-desc">文生图 - 根据文本描述生成图片</span>
-                    <span class="api-toggle">▼</span>
+        <!-- 申请提示 -->
+        <div class="tips-card">
+            <h3>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 16v-4"/>
+                    <path d="M12 8h.01"/>
+                </svg>
+                API申请小贴士
+            </h3>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <strong>💰 选择免费额度</strong>
+                    国产模型大多提供免费额度，建议优先体验
                 </div>
-                <div class="api-body">
-                    <h4 style="font-size: 14px; color: #6B7280; margin: 16px 0 8px;">请求示例</h4>
-                    <div class="code-block">
-                        <code>{
-  "prompt": "一只可爱的猫咪在草地上玩耍",
-  "model": "dall-e-3",
-  "n": 1,
-  "size": "1024x1024"
-}</code>
-                    </div>
-                    <h4 style="font-size: 14px; color: #6B7280; margin: 16px 0 8px;">请求参数</h4>
-                    <table class="param-table">
-                        <tr><th>参数</th><th>类型</th><th>必填</th><th>说明</th></tr>
-                        <tr><td class="param-name">prompt</td><td>string</td><td><span class="param-required">是</span></td><td>图片描述文本</td></tr>
-                        <tr><td class="param-name">model</td><td>string</td><td>否</td><td>模型名称，默认 dall-e-3</td></tr>
-                        <tr><td class="param-name">n</td><td>integer</td><td>否</td><td>生成数量，默认 1</td></tr>
-                        <tr><td class="param-name">size</td><td>string</td><td>否</td><td>图片尺寸，如 1024x1024</td></tr>
-                    </table>
+                <div class="tip-item">
+                    <strong>📝 准备资料</strong>
+                    部分平台需要实名认证或企业资质
                 </div>
-            </div>
-
-            <!-- 文生视频 -->
-            <div class="api-card">
-                <div class="api-header" onclick="toggleApi(this)">
-                    <span class="method post">POST</span>
-                    <span class="api-path">/v1/videos/generations</span>
-                    <span class="api-desc">文生视频 - 根据文本描述生成视频</span>
-                    <span class="api-toggle">▼</span>
+                <div class="tip-item">
+                    <strong>🔒 安全存储</strong>
+                    API密钥需妥善保管，不要泄露给他人
                 </div>
-                <div class="api-body">
-                    <h4 style="font-size: 14px; color: #6B7280; margin: 16px 0 8px;">请求示例</h4>
-                    <div class="code-block">
-                        <code>{
-  "prompt": "日出时分，海浪拍打金色沙滩",
-  "model": "sora",
-  "duration": 10
-}</code>
-                    </div>
-                    <h4 style="font-size: 14px; color: #6B7280; margin: 16px 0 8px;">请求参数</h4>
-                    <table class="param-table">
-                        <tr><th>参数</th><th>类型</th><th>必填</th><th>说明</th></tr>
-                        <tr><td class="param-name">prompt</td><td>string</td><td><span class="param-required">是</span></td><td>视频描述文本</td></tr>
-                        <tr><td class="param-name">model</td><td>string</td><td>否</td><td>模型名称，默认 sora</td></tr>
-                        <tr><td class="param-name">duration</td><td>integer</td><td>否</td><td>视频时长(秒)，默认 10</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- 图生视频 -->
-            <div class="api-card">
-                <div class="api-header" onclick="toggleApi(this)">
-                    <span class="method post">POST</span>
-                    <span class="api-path">/v1/videos/image-to-video</span>
-                    <span class="api-desc">图生视频 - 上传图片生成视频</span>
-                    <span class="api-toggle">▼</span>
-                </div>
-                <div class="api-body">
-                    <h4 style="font-size: 14px; color: #6B7280; margin: 16px 0 8px;">请求示例</h4>
-                    <div class="code-block">
-                        <code>{
-  "image_url": "https://example.com/image.jpg",
-  "prompt": "图片中的风景在微风中轻轻摇曳",
-  "model": "runway"
-}</code>
-                    </div>
-                    <h4 style="font-size: 14px; color: #6B7280; margin: 16px 0 8px;">请求参数</h4>
-                    <table class="param-table">
-                        <tr><th>参数</th><th>类型</th><th>必填</th><th>说明</th></tr>
-                        <tr><td class="param-name">image_url</td><td>string</td><td><span class="param-required">是</span></td><td>图片URL地址</td></tr>
-                        <tr><td class="param-name">prompt</td><td>string</td><td>否</td><td>视频描述文本</td></tr>
-                    </table>
+                <div class="tip-item">
+                    <strong>⚡ 快速开始</strong>
+                    DeepSeek、通义千问注册即可使用
                 </div>
             </div>
         </div>
 
-        <div class="api-section">
-            <h2 style="font-size: 20px; font-weight: 600; color: #1F2937; margin-bottom: 20px;">认证方式</h2>
-            <div class="api-card" style="padding: 24px;">
-                <p style="color: #6B7280; margin-bottom: 16px;">在请求头中携带 API Key 进行认证：</p>
-                <div class="code-block">
-                    <code>Authorization: Bearer YOUR_API_KEY</code>
+        <!-- 国际大模型API -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
                 </div>
-                <p style="color: #6B7280; font-size: 14px; margin-top: 16px;">
-                    <strong>注意：</strong>请前往
-                    <a href="mailto:309888654@qq.com" style="color: #3B82F6;">309888654@qq.com</a>
-                    申请 API Key。
-                </p>
+                <h2 class="section-title">国际大模型 API</h2>
+                <span class="section-count">4 个平台</span>
             </div>
-        </div>
+            <div class="api-grid">
+                <!-- OpenAI -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: #10A37F;">G</div>
+                        <div class="api-info">
+                            <h3>OpenAI API</h3>
+                            <div class="company">GPT-4o / GPT-4 / DALL-E 3 / Sora</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://platform.openai.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://platform.openai.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">GPT-4o</span>
+                        <span class="api-feature">DALL-E 3</span>
+                        <span class="api-feature">Sora</span>
+                        <span class="api-feature">128K上下文</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">按量付费</span>
+                        <a href="https://platform.openai.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Claude -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: #D97706;">C</div>
+                        <div class="api-info">
+                            <h3>Anthropic API</h3>
+                            <div class="company">Claude 3.5 Sonnet / Claude 3 Opus</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://console.anthropic.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://console.anthropic.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">Claude 3.5</span>
+                        <span class="api-feature">200K上下文</span>
+                        <span class="api-feature">代码专精</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">按量付费</span>
+                        <a href="https://console.anthropic.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gemini -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
+                        <div class="api-info">
+                            <h3>Google AI Studio</h3>
+                            <div class="company">Gemini 2.0 Flash / Gemini Pro</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://makersuite.google.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://makersuite.google.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">Gemini 2.0</span>
+                        <span class="api-feature">1M上下文</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://makersuite.google.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mistral -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: #FF7000;">M</div>
+                        <div class="api-info">
+                            <h3>Mistral AI</h3>
+                            <div class="company">Mistral Large 2 / Mixtral</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://console.mistral.ai</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://console.mistral.ai')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">Mistral Large</span>
+                        <span class="api-feature">开源模型</span>
+                        <span class="api-feature">欧洲部署</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">按量付费</span>
+                        <a href="https://console.mistral.ai" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 国产大模型API -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                        <line x1="4" y1="22" x2="4" y2="15"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">国产大模型 API</h2>
+                <span class="section-count">10 个平台</span>
+            </div>
+            <div class="api-grid">
+                <!-- DeepSeek -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">D</div>
+                        <div class="api-info">
+                            <h3>DeepSeek 开放平台</h3>
+                            <div class="company">DeepSeek-V3 / DeepSeek-Coder</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://platform.deepseek.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://platform.deepseek.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">DeepSeek-V3</span>
+                        <span class="api-feature">超低价</span>
+                        <span class="api-feature">代码专精</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">新用户送10元</span>
+                        <a href="https://platform.deepseek.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 百度千帆 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #2563EB, #3B82F6);">文</div>
+                        <div class="api-info">
+                            <h3>百度智能云千帆</h3>
+                            <div class="company">文心一言 4.0 / 文心一言 Turbo</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://console.bce.baidu.com/qianfan</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://console.bce.baidu.com/qianfan')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">文心4.0</span>
+                        <span class="api-feature">128K上下文</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://console.bce.baidu.com/qianfan" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 阿里云百炼 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #FF6A00, #FF8C00);">通</div>
+                        <div class="api-info">
+                            <h3>阿里云百炼</h3>
+                            <div class="company">通义千问 Qwen-Max / Qwen-Plus</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://dashscope.console.aliyun.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://dashscope.console.aliyun.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">Qwen-Max</span>
+                        <span class="api-feature">100K+上下文</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://dashscope.console.aliyun.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 字节火山引擎 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #00D4AA, #00B894);">豆</div>
+                        <div class="api-info">
+                            <h3>火山引擎方舟</h3>
+                            <div class="company">豆包 Doubao-Pro / Doubao-Lite</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://console.volcengine.com/ark</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://console.volcengine.com/ark')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">Doubao-Pro</span>
+                        <span class="api-feature">128K上下文</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://console.volcengine.com/ark" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 智谱AI -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">智</div>
+                        <div class="api-info">
+                            <h3>智谱AI开放平台</h3>
+                            <div class="company">GLM-4 / ChatGLM</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://open.bigmodel.cn</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://open.bigmodel.cn')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">GLM-4</span>
+                        <span class="api-feature">128K上下文</span>
+                        <span class="api-feature">开源模型</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">新用户送tokens</span>
+                        <a href="https://open.bigmodel.cn" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 月之暗面 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #A855F7, #7C3AED);">月</div>
+                        <div class="api-info">
+                            <h3>月之暗面开放平台</h3>
+                            <div class="company">Moonshot / Kimi</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://platform.moonshot.cn</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://platform.moonshot.cn')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">Moonshot</span>
+                        <span class="api-feature">200K上下文</span>
+                        <span class="api-feature">长文档处理</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">新用户送15元</span>
+                        <a href="https://platform.moonshot.cn" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 讯飞星火 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #00B4D8, #0096C7);">星</div>
+                        <div class="api-info">
+                            <h3>讯飞开放平台</h3>
+                            <div class="company">讯飞星火 4.0 / Spark Desk</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://console.xfyun.cn/services/bm3</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://console.xfyun.cn/services/bm3')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">星火4.0</span>
+                        <span class="api-feature">语音能力</span>
+                        <span class="api-feature">多模态</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://console.xfyun.cn/services/bm3" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MiniMax -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">M</div>
+                        <div class="api-info">
+                            <h3>MiniMax 开放平台</h3>
+                            <div class="company">abab-6 / abab-5.5</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://www.minimaxi.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://www.minimaxi.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">abab-6</span>
+                        <span class="api-feature">语音合成</span>
+                        <span class="api-feature">角色扮演</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://www.minimaxi.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 百川智能 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #14B8A6, #0D9488);">百</div>
+                        <div class="api-info">
+                            <h3>百川智能开放平台</h3>
+                            <div class="company">Baichuan-4 / Baichuan-2</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://platform.baichuan-ai.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://platform.baichuan-ai.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">Baichuan-4</span>
+                        <span class="api-feature">开源</span>
+                        <span class="api-feature">可商用</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://platform.baichuan-ai.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 小米AI -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #FF6900, #FF8C00);">米</div>
+                        <div class="api-info">
+                            <h3>小米AI开放平台</h3>
+                            <div class="company">MiMo-V2-Pro / MiMo-V2-Lite</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://platform.xiaomimimo.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://platform.xiaomimimo.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">MiMo-V2</span>
+                        <span class="api-feature">1M上下文</span>
+                        <span class="api-feature">限时免费</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">限时免费</span>
+                        <a href="https://platform.xiaomimimo.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 视频生成API -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon orange">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="M10 9l5 3-5 3V9z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">视频生成 API</h2>
+                <span class="section-count">6 个平台</span>
+            </div>
+            <div class="api-grid">
+                <!-- 可灵AI -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">K</div>
+                        <div class="api-info">
+                            <h3>可灵AI开放平台</h3>
+                            <div class="company">文生视频 / 图生视频</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://klingai.kuaishou.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://klingai.kuaishou.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">国产顶级</span>
+                        <span class="api-feature">长视频</span>
+                        <span class="api-feature">中文优化</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://klingai.kuaishou.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 即梦AI -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">即</div>
+                        <div class="api-info">
+                            <h3>即梦AI创作平台</h3>
+                            <div class="company">文生视频 / 图生视频</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://jimeng.jianying.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://jimeng.jianying.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">创意风格</span>
+                        <span class="api-feature">简单易用</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://jimeng.jianying.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Runway -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">R</div>
+                        <div class="api-info">
+                            <h3>Runway ML</h3>
+                            <div class="company">Gen-3 Alpha / Gen-2</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://runwayml.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://runwayml.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">专业级</span>
+                        <span class="api-feature">风格迁移</span>
+                        <span class="api-feature">4K画质</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">按量付费</span>
+                        <a href="https://runwayml.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Luma AI -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">L</div>
+                        <div class="api-info">
+                            <h3>Luma AI</h3>
+                            <div class="company">Dream Machine / Genie</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://lumalabs.ai</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://lumalabs.ai')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">高质量</span>
+                        <span class="api-feature">图生视频</span>
+                        <span class="api-feature">免费试用</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://lumalabs.ai" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pika -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">P</div>
+                        <div class="api-info">
+                            <h3>Pika Labs</h3>
+                            <div class="company">Pika 2.0 / Pika 1.5</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://pika.art</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://pika.art')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">快速生成</span>
+                        <span class="api-feature">实时预览</span>
+                        <span class="api-feature">免费试用</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://pika.art" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stability AI -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">S</div>
+                        <div class="api-info">
+                            <h3>Stability AI</h3>
+                            <div class="company">Stable Video Diffusion</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://platform.stability.ai</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://platform.stability.ai')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">开源</span>
+                        <span class="api-feature">本地部署</span>
+                        <span class="api-feature">完全免费</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">开源免费</span>
+                        <a href="https://stability.ai" target="_blank" class="btn-visit">
+                            下载模型 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 图片生成API -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <path d="M21 15l-5-5L5 21"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">图片生成 API</h2>
+                <span class="section-count">6 个平台</span>
+            </div>
+            <div class="api-grid">
+                <!-- Midjourney -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #1F2937, #111827);">M</div>
+                        <div class="api-info">
+                            <h3>Midjourney</h3>
+                            <div class="company">V6 / V5.2 / Niji</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://midjourney.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://midjourney.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">艺术风格</span>
+                        <span class="api-feature">高质量</span>
+                        <span class="api-feature">设计师首选</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">$10/月起</span>
+                        <a href="https://midjourney.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Flux -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">F</div>
+                        <div class="api-info">
+                            <h3>Flux.1</h3>
+                            <div class="company">Black Forest Labs</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://huggingface.co/black-forest-labs</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://huggingface.co/black-forest-labs')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">画质顶级</span>
+                        <span class="api-feature">文字渲染</span>
+                        <span class="api-feature">开源免费</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">完全免费</span>
+                        <a href="https://huggingface.co/black-forest-labs" target="_blank" class="btn-visit">
+                            下载模型 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stable Diffusion -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">S</div>
+                        <div class="api-info">
+                            <h3>Stable Diffusion</h3>
+                            <div class="company">SDXL / SD 1.5</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://stability.ai</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://stability.ai')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">开源</span>
+                        <span class="api-feature">LoRA微调</span>
+                        <span class="api-feature">生态丰富</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">完全免费</span>
+                        <a href="https://stability.ai" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ideogram -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">I</div>
+                        <div class="api-info">
+                            <h3>Ideogram</h3>
+                            <div class="company">Ideogram 2.0</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://ideogram.ai</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://ideogram.ai')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">文字渲染最强</span>
+                        <span class="api-feature">海报设计</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://ideogram.ai" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 通义万相 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #FF6A00, #FF8C00);">通</div>
+                        <div class="api-info">
+                            <h3>通义万相</h3>
+                            <div class="company">阿里云图片生成</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://dashscope.console.aliyun.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://dashscope.console.aliyun.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">中文优化</span>
+                        <span class="api-feature">多风格</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://dashscope.console.aliyun.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 文心一格 -->
+                <div class="api-card">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #2563EB, #3B82F6);">文</div>
+                        <div class="api-info">
+                            <h3>文心一格</h3>
+                            <div class="company">百度图片生成</div>
+                        </div>
+                    </div>
+                    <div class="api-url">
+                        <code>https://yige.baidu.com</code>
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText('https://yige.baidu.com')">复制</button>
+                    </div>
+                    <div class="api-features">
+                        <span class="api-feature highlight">中文优化</span>
+                        <span class="api-feature">艺术风格</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://yige.baidu.com" target="_blank" class="btn-visit">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer style="background: #1E293B; color: #E5E7EB; padding: 32px; text-align: center;">
-        <p style="font-size: 14px; color: #6B7280;">© 2026 AICG视频创作软件. All rights reserved.</p>
+    <footer class="footer">
+        <p>© 2026 小天AICG. All rights reserved. | 湖南省长沙市岳麓区枫林三路800号 | <a href="index.html">返回首页</a></p>
     </footer>
-
-    <script>
-        function toggleApi(header) {
-            const card = header.parentElement;
-            card.classList.toggle('open');
-        }
-    </script>
 </body>
 </html>

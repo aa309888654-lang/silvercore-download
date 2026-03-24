@@ -1,0 +1,15 @@
+# robots.txt for 小天AICG
+# https://aicgxt.icu
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://aicgxt.icu/sitemap.xml
+
+# 禁止爬取的页面
+Disallow: /api/
+Disallow: /private/
+
+# 爬取延迟
+Crawl-delay: 1

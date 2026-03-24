@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI模型 - AICG视频创作软件</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta name="description" content="小天AICG AI模型大全 - 收录国内外主流AI大模型，包括视频生成模型、图片生成模型等。">
+    <meta name="keywords" content="AI模型大全,大模型,视频生成模型,图片生成模型,OpenAI,Claude,DeepSeek">
+    <title>AI模型大全 - 小天AICG</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { 
-            background: #EDF2F9; 
-            font-family: 'Inter', system-ui, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .page-header {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.9));
+        body {
+            background: #EDF2F9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid #DDE4ED;
-            padding: 20px 0;
+            padding: 16px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(20px);
         }
         
         .header-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 32px;
             display: flex;
@@ -32,24 +39,17 @@
             justify-content: space-between;
         }
         
-        .logo-link {
+        .logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
         }
         
-        .logo-text {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1F2937;
-        }
+        .logo svg { width: 36px; height: 36px; }
+        .logo-text { font-size: 18px; font-weight: 700; color: #1F2937; }
         
-        .nav-links {
-            display: flex;
-            gap: 8px;
-        }
-        
+        .nav-links { display: flex; gap: 8px; align-items: center; }
         .nav-link {
             padding: 10px 18px;
             border-radius: 10px;
@@ -59,39 +59,102 @@
             text-decoration: none;
             transition: all 0.2s;
         }
+        .nav-link:hover { background: #EEF3FA; color: #1F2937; }
+        .nav-link.active { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
         
-        .nav-link:hover {
+        .nav-cta {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            text-decoration: none;
+            margin-left: 8px;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+
+        /* Hero区域 */
+        .hero {
+            background: linear-gradient(135deg, #EEF3FA 0%, #F8FAFC 100%);
+            padding: 60px 32px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #1F2937;
+            margin-bottom: 16px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #6B7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 32px; font-weight: 700; color: #3B82F6; }
+        .stat-label { font-size: 14px; color: #9CA3AF; margin-top: 4px; }
+
+        /* 主内容 */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px 32px;
+        }
+
+        /* 分类标签 */
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .category-tab {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            background: white;
+            color: #6B7280;
+            text-decoration: none;
+            border: 1px solid #E5E7EB;
+            transition: all 0.2s;
+        }
+        
+        .category-tab:hover {
             background: #EEF3FA;
             color: #1F2937;
         }
         
-        .nav-link.active {
-            background: rgba(59, 130, 246, 0.1);
-            color: #3B82F6;
+        .category-tab.active {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            border-color: transparent;
         }
-        
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 48px 32px;
-        }
-        
-        .page-title {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1F2937;
-            margin-bottom: 12px;
-        }
-        
-        .page-subtitle {
-            font-size: 16px;
-            color: #6B7280;
-            margin-bottom: 40px;
-        }
-        
-        .section {
-            margin-bottom: 56px;
-        }
+
+        /* 区块 */
+        .section { margin-bottom: 48px; }
         
         .section-header {
             display: flex;
@@ -101,104 +164,110 @@
         }
         
         .section-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
         }
         
-        .section-icon.purple {
-            background: linear-gradient(135deg, #8B5CF6, #7C3AED);
-        }
+        .section-icon.blue { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+        .section-icon.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+        .section-icon.green { background: linear-gradient(135deg, #10B981, #059669); }
+        .section-icon.orange { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .section-icon.pink { background: linear-gradient(135deg, #EC4899, #DB2777); }
+        .section-icon svg { width: 24px; height: 24px; }
         
-        .section-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1F2937;
-        }
+        .section-title { font-size: 24px; font-weight: 700; color: #1F2937; }
         
         .section-count {
-            font-size: 14px;
+            font-size: 13px;
             color: #9CA3AF;
             background: #F3F4F6;
             padding: 4px 12px;
             border-radius: 20px;
+            margin-left: auto;
         }
-        
-        .model-grid {
+
+        /* 模型网格 */
+        .models-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 20px;
         }
-        
+
+        /* 模型卡片 */
         .model-card {
             background: white;
             border-radius: 16px;
             padding: 24px;
             border: 1px solid #E5E7EB;
             transition: all 0.3s;
-            cursor: pointer;
         }
         
         .model-card:hover {
             border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
             transform: translateY(-4px);
         }
         
         .model-header {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             margin-bottom: 16px;
         }
         
-        .model-logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
+        .model-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
             font-weight: 700;
             color: white;
+            flex-shrink: 0;
         }
         
-        .model-logo.sora { background: linear-gradient(135deg, #10B981, #059669); }
-        .model-logo.runway { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
-        .model-logo.pika { background: linear-gradient(135deg, #F59E0B, #D97706); }
-        .model-logo.svd { background: linear-gradient(135deg, #EC4899, #DB2777); }
-        .model-logo.kling { background: linear-gradient(135deg, #3B82F6, #2563EB); }
-        .model-logo.jimeng { background: linear-gradient(135deg, #06B6D4, #0891B2); }
-        .model-logo.dalle { background: linear-gradient(135deg, #10B981, #059669); }
-        .model-logo.midjourney { background: linear-gradient(135deg, #1F2937, #111827); }
-        .model-logo.sdxl { background: linear-gradient(135deg, #EC4899, #DB2777); }
-        .model-logo.flux { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
-        .model-logo.ideogram { background: linear-gradient(135deg, #F59E0B, #D97706); }
-        .model-logo.doubao { background: linear-gradient(135deg, #3B82F6, #2563EB); }
-        
-        .model-name {
-            font-size: 18px;
+        .model-info h3 {
+            font-size: 17px;
             font-weight: 600;
             color: #1F2937;
+            margin: 0 0 4px 0;
         }
         
-        .model-company {
-            font-size: 13px;
-            color: #9CA3AF;
-        }
+        .model-info .company { font-size: 13px; color: #9CA3AF; }
         
         .model-desc {
             font-size: 14px;
             color: #6B7280;
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 16px;
         }
+        
+        .model-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #6B7280;
+            background: #F9FAFB;
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+        
+        .spec-item svg { width: 14px; height: 14px; color: #9CA3AF; }
         
         .model-tags {
             display: flex;
@@ -208,10 +277,10 @@
         }
         
         .model-tag {
+            padding: 5px 12px;
+            border-radius: 8px;
             font-size: 12px;
-            padding: 4px 10px;
             background: #F3F4F6;
-            border-radius: 6px;
             color: #6B7280;
         }
         
@@ -220,77 +289,69 @@
             color: #3B82F6;
         }
         
-        .model-specs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+        .model-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding-top: 16px;
             border-top: 1px solid #F3F4F6;
         }
         
-        .spec-item {
-            text-align: center;
-        }
-        
-        .spec-value {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1F2937;
-        }
-        
-        .spec-label {
-            font-size: 11px;
-            color: #9CA3AF;
-        }
-        
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 4px;
+        .model-price {
+            font-size: 13px;
             font-weight: 500;
         }
         
-        .badge.new {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10B981;
+        .model-price.free { color: #10B981; }
+        .model-price.paid { color: #F59E0B; }
+        
+        .btn-apply {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s;
         }
         
-        .badge.hot {
-            background: rgba(239, 68, 68, 0.1);
-            color: #EF4444;
+        .btn-apply:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
         
-        .badge.free {
-            background: rgba(59, 130, 246, 0.1);
-            color: #3B82F6;
+        .btn-apply svg { width: 14px; height: 14px; }
+
+        /* 页脚 */
+        .footer {
+            background: #111827;
+            color: #9CA3AF;
+            padding: 40px 32px;
+            text-align: center;
+            margin-top: 60px;
         }
         
-        @media (max-width: 1024px) {
-            .model-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .model-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
+        .footer p { font-size: 13px; margin: 0; }
+        .footer a { color: #3B82F6; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .models-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .model-specs { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
-    <header class="page-header">
+    <header class="header">
         <div class="header-container">
-            <a href="../index.html" class="logo-link">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 40 40" fill="none">
                     <rect width="40" height="40" rx="12" fill="url(#logoGrad)"/>
                     <circle cx="20" cy="16" r="7" stroke="white" stroke-width="2"/>
                     <path d="M12 30C12 25 16 22 20 22C24 22 28 25 28 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -301,435 +362,1102 @@
                         </linearGradient>
                     </defs>
                 </svg>
-                <span class="logo-text">AICG 模型</span>
+                <span class="logo-text">小天AICG</span>
             </a>
-            
             <nav class="nav-links">
-                <a href="../index.html" class="nav-link">首页</a>
+                <a href="index.html" class="nav-link">首页</a>
                 <a href="tools.html" class="nav-link">软件</a>
                 <a href="models.html" class="nav-link active">模型</a>
-                <a href="api-reference.html" class="nav-link">API</a>
+                <a href="api.html" class="nav-link">API</a>
                 <a href="about.html" class="nav-link">关于</a>
+                <a href="tools.html" class="nav-cta">立即下载</a>
             </nav>
         </div>
     </header>
 
-    <!-- 主内容 -->
+    <section class="hero">
+        <h1>🤖 <span>AI模型</span>大全</h1>
+        <p>收录国内外主流AI大模型，涵盖对话、视频生成、图片生成等能力</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-value">25+</div>
+                <div class="stat-label">AI模型</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4</div>
+                <div class="stat-label">模型分类</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">实时</div>
+                <div class="stat-label">更新维护</div>
+            </div>
+        </div>
+    </section>
+
     <main class="main-content">
-        <h1 class="page-title">AI 生成模型</h1>
-        <p class="page-subtitle">主流视频与图片生成模型，支持 API 接入</p>
+        <!-- 分类导航 -->
+        <div class="category-tabs">
+            <a href="#international" class="category-tab active">🌍 国际大模型</a>
+            <a href="#domestic" class="category-tab">🇨🇳 国产大模型</a>
+            <a href="#video" class="category-tab">🎬 视频生成</a>
+            <a href="#image" class="category-tab">🖼️ 图片生成</a>
+        </div>
+
+        <!-- 国际大模型 -->
+        <section class="section" id="international">
+            <div class="section-header">
+                <div class="section-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">国际大模型</h2>
+                <span class="section-count">4 个平台</span>
+            </div>
+            <div class="models-grid">
+                <!-- OpenAI GPT-4 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: #10A37F;">G</div>
+                        <div class="model-info">
+                            <h3>GPT-4o / GPT-4 Turbo</h3>
+                            <div class="company">OpenAI · 美国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">全球最强通用大模型，支持128K上下文，多模态理解能力领先。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            多模态
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">GPT-4o</span>
+                        <span class="model-tag">DALL-E 3</span>
+                        <span class="model-tag">Sora</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price paid">按量付费</span>
+                        <a href="https://platform.openai.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Claude -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: #D97706;">C</div>
+                        <div class="model-info">
+                            <h3>Claude 3.5 Sonnet</h3>
+                            <div class="company">Anthropic · 美国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">安全性与长上下文著称，200K上下文，代码能力出色。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            200K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                            代码专精
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">Claude 3.5</span>
+                        <span class="model-tag">安全</span>
+                        <span class="model-tag">长文本</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price paid">按量付费</span>
+                        <a href="https://console.anthropic.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gemini -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
+                        <div class="model-info">
+                            <h3>Gemini 2.0 Flash</h3>
+                            <div class="company">Google · 美国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">Google最强多模态模型，支持100万token上下文，有免费额度。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            1M 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            多模态
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">Gemini 2.0</span>
+                        <span class="model-tag">免费额度</span>
+                        <span class="model-tag">超长上下文</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://makersuite.google.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mistral -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: #FF7000;">M</div>
+                        <div class="model-info">
+                            <h3>Mistral Large 2</h3>
+                            <div class="company">Mistral AI · 法国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">欧洲最强AI公司，开源模型性能优异，支持多语言。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            开源模型
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">Mistral Large</span>
+                        <span class="model-tag">开源</span>
+                        <span class="model-tag">欧洲部署</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price paid">按量付费</span>
+                        <a href="https://console.mistral.ai" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 国产大模型 -->
+        <section class="section" id="domestic">
+            <div class="section-header">
+                <div class="section-icon purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                        <line x1="4" y1="22" x2="4" y2="15"/>
+                    </svg>
+                </div>
+                <h2 class="section-title">国产大模型</h2>
+                <span class="section-count">10 个平台</span>
+            </div>
+            <div class="models-grid">
+                <!-- DeepSeek -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">D</div>
+                        <div class="model-info">
+                            <h3>DeepSeek-V3</h3>
+                            <div class="company">深度求索 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">国产性价比之王，性能对标GPT-4，价格极低，代码能力出色。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            64K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                            代码专精
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">DeepSeek-V3</span>
+                        <span class="model-tag">超低价</span>
+                        <span class="model-tag">开源</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">超低价</span>
+                        <a href="https://platform.deepseek.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 文心一言 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #2563EB, #3B82F6);">文</div>
+                        <div class="model-info">
+                            <h3>文心一言 4.0</h3>
+                            <div class="company">百度 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">百度自研大模型，中文理解能力强大，企业部署方案完善。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            企业部署
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">文心4.0</span>
+                        <span class="model-tag">中文优化</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://console.bce.baidu.com/qianfan" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 通义千问 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #FF6A00, #FF8C00);">通</div>
+                        <div class="model-info">
+                            <h3>通义千问 Qwen-Max</h3>
+                            <div class="company">阿里巴巴 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">阿里云大模型，支持100K+上下文，多版本可选，性价比高。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            100K+ 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            多模态
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">Qwen-Max</span>
+                        <span class="model-tag">开源</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://dashscope.console.aliyun.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 讯飞星火 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #00B4D8, #0096C7);">星</div>
+                        <div class="model-info">
+                            <h3>讯飞星火 4.0</h3>
+                            <div class="company">科大讯飞 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">讯飞自研大模型，语音能力突出，支持多模态交互。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                            语音合成
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">星火4.0</span>
+                        <span class="model-tag">语音</span>
+                        <span class="model-tag">多模态</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://console.xfyun.cn/services/bm3" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 智谱AI -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">智</div>
+                        <div class="model-info">
+                            <h3>智谱 GLM-4</h3>
+                            <div class="company">北京智谱华章 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">清华系AI公司，128K上下文，开源ChatGLM生态活跃。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            开源模型
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">GLM-4</span>
+                        <span class="model-tag">开源</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://open.bigmodel.cn" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 月之暗面 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #A855F7, #7C3AED);">月</div>
+                        <div class="model-info">
+                            <h3>月之暗面 Kimi</h3>
+                            <div class="company">月之暗面科技 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">长文本处理能力领先，200K超长上下文，适合文档分析。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            200K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            长文档
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">Moonshot</span>
+                        <span class="model-tag">超长文本</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://platform.moonshot.cn" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 字节豆包 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #00D4AA, #00B894);">豆</div>
+                        <div class="model-info">
+                            <h3>字节豆包 Doubao</h3>
+                            <div class="company">字节跳动 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">字节跳动大模型，Doubao系列性价比高，接入简单。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            多模态
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">Doubao-Pro</span>
+                        <span class="model-tag">企业级</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://console.volcengine.com/ark" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MiniMax -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">M</div>
+                        <div class="model-info">
+                            <h3>MiniMax abab-6</h3>
+                            <div class="company">MiniMax稀宇科技 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">新生代AI公司，支持角色扮演、语音合成，适合娱乐社交。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            角色扮演
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">abab-6</span>
+                        <span class="model-tag">语音合成</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://www.minimaxi.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 百川智能 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #14B8A6, #0D9488);">百</div>
+                        <div class="model-info">
+                            <h3>百川 Baichuan-4</h3>
+                            <div class="company">百川智能 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">前搜狗CEO创立，开源模型生态活跃，可商用。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            128K 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            开源可商用
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">Baichuan-4</span>
+                        <span class="model-tag">开源</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://platform.baichuan-ai.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 小米 MiMo -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #FF6900, #FF8C00);">米</div>
+                        <div class="model-info">
+                            <h3>小米 MiMo-V2</h3>
+                            <div class="company">小米科技 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">小米AI开放平台，支持1M超长上下文，限时免费。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            1M 上下文
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            多模态
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">MiMo-V2-Pro</span>
+                        <span class="model-tag">超长上下文</span>
+                        <span class="model-tag">限时免费</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">限时免费</span>
+                        <a href="https://platform.xiaomimimo.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- 视频生成模型 -->
-        <section class="section">
+        <section class="section" id="video">
             <div class="section-header">
-                <div class="section-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="section-icon orange">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="4" width="20" height="16" rx="2"/>
                         <path d="M10 9l5 3-5 3V9z"/>
                     </svg>
                 </div>
                 <h2 class="section-title">视频生成模型</h2>
-                <span class="section-count">6 个模型</span>
+                <span class="section-count">8 个平台</span>
             </div>
-            
-            <div class="model-grid">
+            <div class="models-grid">
                 <!-- Sora -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo sora">S</div>
-                        <div>
-                            <div class="model-name">Sora <span class="badge hot">热门</span></div>
-                            <div class="model-company">OpenAI</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #10B981, #059669);">S</div>
+                        <div class="model-info">
+                            <h3>Sora</h3>
+                            <div class="company">OpenAI · 美国</div>
                         </div>
                     </div>
-                    <p class="model-desc">业界领先的文生视频模型，支持生成长达60秒的高质量视频，具有出色的物理模拟能力。</p>
+                    <p class="model-desc">业界领先的文生视频模型，支持生成60秒高质量视频。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+                            60秒视频
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            4K画质
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">文生视频</span>
                         <span class="model-tag">图生视频</span>
-                        <span class="model-tag">1080P</span>
+                        <span class="model-tag">顶级效果</span>
                     </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">60s</div>
-                            <div class="spec-label">最大时长</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">1080P</div>
-                            <div class="spec-label">分辨率</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">$0.05/s</div>
-                            <div class="spec-label">价格</div>
-                        </div>
+                    <div class="model-footer">
+                        <span class="model-price paid">按量付费</span>
+                        <a href="https://platform.openai.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Runway Gen-3 -->
+                <!-- Runway -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo runway">R</div>
-                        <div>
-                            <div class="model-name">Runway Gen-3 <span class="badge new">新</span></div>
-                            <div class="model-company">Runway</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">R</div>
+                        <div class="model-info">
+                            <h3>Runway Gen-3</h3>
+                            <div class="company">Runway · 美国</div>
                         </div>
                     </div>
-                    <p class="model-desc">专业级视频生成工具，支持多种风格迁移和视频编辑功能，艺术家首选。</p>
+                    <p class="model-desc">专业级视频生成工具，支持多种风格迁移和视频编辑。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+                            视频编辑
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+                            风格迁移
+                        </div>
+                    </div>
                     <div class="model-tags">
-                        <span class="model-tag highlight">视频编辑</span>
+                        <span class="model-tag highlight">专业级</span>
                         <span class="model-tag">风格迁移</span>
                         <span class="model-tag">4K</span>
                     </div>
+                    <div class="model-footer">
+                        <span class="model-price paid">按量付费</span>
+                        <a href="https://runwayml.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 可灵AI -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">K</div>
+                        <div class="model-info">
+                            <h3>可灵 AI</h3>
+                            <div class="company">快手 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">国产顶级视频生成模型，中文理解优秀，支持长视频。</p>
                     <div class="model-specs">
                         <div class="spec-item">
-                            <div class="spec-value">18s</div>
-                            <div class="spec-label">最大时长</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+                            长视频
                         </div>
                         <div class="spec-item">
-                            <div class="spec-value">4K</div>
-                            <div class="spec-label">分辨率</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            中文优化
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">国产顶级</span>
+                        <span class="model-tag">长视频</span>
+                        <span class="model-tag">1080P</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://klingai.kuaishou.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 即梦AI -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">即</div>
+                        <div class="model-info">
+                            <h3>即梦 AI</h3>
+                            <div class="company">字节跳动 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">字节跳动视频生成产品，创意风格丰富，操作简单。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+                            创意风格
                         </div>
                         <div class="spec-item">
-                            <div class="spec-value">$0.05/s</div>
-                            <div class="spec-label">价格</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                            简单易用
                         </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">创意丰富</span>
+                        <span class="model-tag">简单易用</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://jimeng.jianying.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Pika -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo pika">P</div>
-                        <div>
-                            <div class="model-name">Pika 2.0</div>
-                            <div class="model-company">Pika Labs</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">P</div>
+                        <div class="model-info">
+                            <h3>Pika 2.0</h3>
+                            <div class="company">Pika Labs · 美国</div>
                         </div>
                     </div>
-                    <p class="model-desc">快速视频生成，支持实时预览和编辑，适合快速创作和原型设计。</p>
+                    <p class="model-desc">快速视频生成，支持实时预览和编辑，适合快速创作。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            快速生成
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            实时预览
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">快速生成</span>
                         <span class="model-tag">实时预览</span>
                         <span class="model-tag">免费额度</span>
                     </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">4s</div>
-                            <div class="spec-label">最大时长</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">1080P</div>
-                            <div class="spec-label">分辨率</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">免费</div>
-                            <div class="spec-label">基础版</div>
-                        </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://pika.art" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Stable Video Diffusion -->
+                <!-- Luma -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo svd">S</div>
-                        <div>
-                            <div class="model-name">Stable Video</div>
-                            <div class="model-company">Stability AI</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">L</div>
+                        <div class="model-info">
+                            <h3>Luma Dream Machine</h3>
+                            <div class="company">Luma AI · 美国</div>
                         </div>
                     </div>
-                    <p class="model-desc">开源视频生成模型，支持本地部署，完全免费使用，社区活跃。</p>
+                    <p class="model-desc">高质量视频生成，支持图生视频和文生视频。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            图生视频
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            文生视频
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">高质量</span>
+                        <span class="model-tag">图生视频</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://lumalabs.ai" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stable Video -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">S</div>
+                        <div class="model-info">
+                            <h3>Stable Video</h3>
+                            <div class="company">Stability AI · 美国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">开源视频生成模型，支持本地部署，完全免费。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            开源免费
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                            本地部署
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">开源</span>
                         <span class="model-tag">本地部署</span>
-                        <span class="model-tag free">免费</span>
+                        <span class="model-tag">完全免费</span>
                     </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">4s</div>
-                            <div class="spec-label">最大时长</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">576p</div>
-                            <div class="spec-label">分辨率</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">免费</div>
-                            <div class="spec-label">开源</div>
-                        </div>
+                    <div class="model-footer">
+                        <span class="model-price free">完全免费</span>
+                        <a href="https://stability.ai" target="_blank" class="btn-apply">
+                            下载模型 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
-                <!-- 可灵 AI -->
+                <!-- Haiper -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo kling">K</div>
-                        <div>
-                            <div class="model-name">可灵 AI <span class="badge hot">热门</span></div>
-                            <div class="model-company">快手</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #F43F5E, #E11D48);">H</div>
+                        <div class="model-info">
+                            <h3>Haiper</h3>
+                            <div class="company">Haiper AI · 英国</div>
                         </div>
                     </div>
-                    <p class="model-desc">国产顶级视频生成模型，中文理解优秀，支持长视频和多种特效。</p>
-                    <div class="model-tags">
-                        <span class="model-tag highlight">中文优化</span>
-                        <span class="model-tag">长视频</span>
-                        <span class="model-tag">1080P</span>
-                    </div>
+                    <p class="model-desc">新兴视频生成平台，效果出色，支持多种风格。</p>
                     <div class="model-specs">
                         <div class="spec-item">
-                            <div class="spec-value">2min</div>
-                            <div class="spec-label">最大时长</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+                            多风格
                         </div>
                         <div class="spec-item">
-                            <div class="spec-value">1080P</div>
-                            <div class="spec-label">分辨率</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">¥0.2/s</div>
-                            <div class="spec-label">价格</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+                            高清画质
                         </div>
                     </div>
-                </div>
-
-                <!-- 即梦 AI -->
-                <div class="model-card">
-                    <div class="model-header">
-                        <div class="model-logo jimeng">J</div>
-                        <div>
-                            <div class="model-name">即梦 AI</div>
-                            <div class="model-company">字节跳动</div>
-                        </div>
-                    </div>
-                    <p class="model-desc">字节跳动视频生成产品，创意风格丰富，操作简单，新手友好。</p>
                     <div class="model-tags">
-                        <span class="model-tag highlight">创意风格</span>
-                        <span class="model-tag">简单易用</span>
-                        <span class="model-tag">免费额度</span>
+                        <span class="model-tag highlight">多风格</span>
+                        <span class="model-tag">高清画质</span>
+                        <span class="model-tag">免费试用</span>
                     </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">10s</div>
-                            <div class="spec-label">最大时长</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">1080P</div>
-                            <div class="spec-label">分辨率</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">免费</div>
-                            <div class="spec-label">基础版</div>
-                        </div>
+                    <div class="model-footer">
+                        <span class="model-price free">免费试用</span>
+                        <a href="https://haiper.ai" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 图片生成模型 -->
-        <section class="section">
+        <section class="section" id="image">
             <div class="section-header">
-                <div class="section-icon purple">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="section-icon green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="3" width="18" height="18" rx="2"/>
                         <circle cx="8.5" cy="8.5" r="1.5"/>
                         <path d="M21 15l-5-5L5 21"/>
                     </svg>
                 </div>
                 <h2 class="section-title">图片生成模型</h2>
-                <span class="section-count">6 个模型</span>
+                <span class="section-count">8 个平台</span>
             </div>
-            
-            <div class="model-grid">
+            <div class="models-grid">
                 <!-- DALL-E 3 -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo dalle">D</div>
-                        <div>
-                            <div class="model-name">DALL-E 3 <span class="badge hot">热门</span></div>
-                            <div class="model-company">OpenAI</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #10B981, #059669);">D</div>
+                        <div class="model-info">
+                            <h3>DALL-E 3</h3>
+                            <div class="company">OpenAI · 美国</div>
                         </div>
                     </div>
-                    <p class="model-desc">最强文生图模型之一，提示词理解精准，支持复杂场景描述和文字渲染。</p>
+                    <p class="model-desc">最强文生图模型之一，提示词理解精准，支持文字渲染。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            精准理解
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            文字渲染
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">文生图</span>
                         <span class="model-tag">文字渲染</span>
                         <span class="model-tag">4K</span>
                     </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">4096px</div>
-                            <div class="spec-label">最大尺寸</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">~15s</div>
-                            <div class="spec-label">生成速度</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">$0.04</div>
-                            <div class="spec-label">每张</div>
-                        </div>
+                    <div class="model-footer">
+                        <span class="model-price paid">$0.04/张</span>
+                        <a href="https://platform.openai.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Midjourney -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo midjourney">M</div>
-                        <div>
-                            <div class="model-name">Midjourney V6</div>
-                            <div class="model-company">Midjourney</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #1F2937, #111827);">M</div>
+                        <div class="model-info">
+                            <h3>Midjourney V6</h3>
+                            <div class="company">Midjourney · 美国</div>
                         </div>
                     </div>
-                    <p class="model-desc">艺术风格首选，生成图片美观度极高，设计师和艺术家最爱。</p>
+                    <p class="model-desc">艺术风格首选，生成图片美观度极高，设计师最爱。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+                            艺术风格
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            高质量
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">艺术风格</span>
                         <span class="model-tag">高质量</span>
                         <span class="model-tag">风格化</span>
                     </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">2048px</div>
-                            <div class="spec-label">最大尺寸</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">~60s</div>
-                            <div class="spec-label">生成速度</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">$10/月</div>
-                            <div class="spec-label">订阅</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stable Diffusion XL -->
-                <div class="model-card">
-                    <div class="model-header">
-                        <div class="model-logo sdxl">S</div>
-                        <div>
-                            <div class="model-name">Stable Diffusion XL</div>
-                            <div class="model-company">Stability AI</div>
-                        </div>
-                    </div>
-                    <p class="model-desc">最强开源图片模型，支持LoRA微调，可本地部署，生态最丰富。</p>
-                    <div class="model-tags">
-                        <span class="model-tag highlight">开源</span>
-                        <span class="model-tag">LoRA</span>
-                        <span class="model-tag free">免费</span>
-                    </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">1024px</div>
-                            <div class="spec-label">推荐尺寸</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">~5s</div>
-                            <div class="spec-label">生成速度</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">免费</div>
-                            <div class="spec-label">开源</div>
-                        </div>
+                    <div class="model-footer">
+                        <span class="model-price paid">$10/月起</span>
+                        <a href="https://midjourney.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Flux -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo flux">F</div>
-                        <div>
-                            <div class="model-name">Flux.1 <span class="badge new">新</span></div>
-                            <div class="model-company">Black Forest Labs</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">F</div>
+                        <div class="model-info">
+                            <h3>Flux.1</h3>
+                            <div class="company">Black Forest Labs · 德国</div>
                         </div>
                     </div>
-                    <p class="model-desc">2024年最强开源模型，画质超越MJ，支持文字渲染，开源免费。</p>
+                    <p class="model-desc">2024年最强开源模型，画质超越MJ，支持文字渲染。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            画质顶级
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            开源免费
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">画质顶级</span>
                         <span class="model-tag">文字渲染</span>
-                        <span class="model-tag free">免费</span>
+                        <span class="model-tag">开源</span>
                     </div>
+                    <div class="model-footer">
+                        <span class="model-price free">完全免费</span>
+                        <a href="https://huggingface.co/black-forest-labs" target="_blank" class="btn-apply">
+                            下载模型 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stable Diffusion -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">S</div>
+                        <div class="model-info">
+                            <h3>Stable Diffusion XL</h3>
+                            <div class="company">Stability AI · 美国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">最强开源图片模型，支持LoRA微调，生态最丰富。</p>
                     <div class="model-specs">
                         <div class="spec-item">
-                            <div class="spec-value">1440px</div>
-                            <div class="spec-label">推荐尺寸</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            开源免费
                         </div>
                         <div class="spec-item">
-                            <div class="spec-value">~10s</div>
-                            <div class="spec-label">生成速度</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                            LoRA微调
                         </div>
-                        <div class="spec-item">
-                            <div class="spec-value">免费</div>
-                            <div class="spec-label">开源</div>
-                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">开源</span>
+                        <span class="model-tag">LoRA</span>
+                        <span class="model-tag">生态丰富</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">完全免费</span>
+                        <a href="https://stability.ai" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Ideogram -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo ideogram">I</div>
-                        <div>
-                            <div class="model-name">Ideogram 2.0</div>
-                            <div class="model-company">Ideogram</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">I</div>
+                        <div class="model-info">
+                            <h3>Ideogram 2.0</h3>
+                            <div class="company">Ideogram · 美国</div>
                         </div>
                     </div>
-                    <p class="model-desc">文字渲染最强，适合生成带文字的海报、Logo、标语图片。</p>
+                    <p class="model-desc">文字渲染最强，适合生成带文字的海报、Logo。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+                            文字渲染
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            海报设计
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">文字渲染</span>
                         <span class="model-tag">海报设计</span>
                         <span class="model-tag">免费额度</span>
                     </div>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <div class="spec-value">1024px</div>
-                            <div class="spec-label">最大尺寸</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">~20s</div>
-                            <div class="spec-label">生成速度</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-value">免费</div>
-                            <div class="spec-label">基础版</div>
-                        </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://ideogram.ai" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
 
-                <!-- 豆包 -->
+                <!-- 豆包文生图 -->
                 <div class="model-card">
                     <div class="model-header">
-                        <div class="model-logo doubao">豆</div>
-                        <div>
-                            <div class="model-name">豆包文生图</div>
-                            <div class="model-company">字节跳动</div>
+                        <div class="model-icon" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">豆</div>
+                        <div class="model-info">
+                            <h3>豆包文生图</h3>
+                            <div class="company">字节跳动 · 中国</div>
                         </div>
                     </div>
-                    <p class="model-desc">国产图片生成，中文理解优秀，风格多样，价格实惠。</p>
+                    <p class="model-desc">国产图片生成，中文理解优秀，价格实惠。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            中文优化
+                        </div>
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+                            风格多样
+                        </div>
+                    </div>
                     <div class="model-tags">
                         <span class="model-tag highlight">中文优化</span>
                         <span class="model-tag">风格多样</span>
                         <span class="model-tag">性价比</span>
                     </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://console.volcengine.com/ark" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 通义万相 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #FF6A00, #FF8C00);">通</div>
+                        <div class="model-info">
+                            <h3>通义万相</h3>
+                            <div class="company">阿里巴巴 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">阿里云图片生成模型，中文提示词优化。</p>
                     <div class="model-specs">
                         <div class="spec-item">
-                            <div class="spec-value">1024px</div>
-                            <div class="spec-label">最大尺寸</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            中文优化
                         </div>
                         <div class="spec-item">
-                            <div class="spec-value">~8s</div>
-                            <div class="spec-label">生成速度</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+                            多风格
+                        </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">中文优化</span>
+                        <span class="model-tag">多风格</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://dashscope.console.aliyun.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 文心一格 -->
+                <div class="model-card">
+                    <div class="model-header">
+                        <div class="model-icon" style="background: linear-gradient(135deg, #2563EB, #3B82F6);">文</div>
+                        <div class="model-info">
+                            <h3>文心一格</h3>
+                            <div class="company">百度 · 中国</div>
+                        </div>
+                    </div>
+                    <p class="model-desc">百度图片生成平台，中文理解出色。</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            中文优化
                         </div>
                         <div class="spec-item">
-                            <div class="spec-value">¥0.02</div>
-                            <div class="spec-label">每张</div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/></svg>
+                            艺术风格
                         </div>
+                    </div>
+                    <div class="model-tags">
+                        <span class="model-tag highlight">中文优化</span>
+                        <span class="model-tag">艺术风格</span>
+                        <span class="model-tag">免费额度</span>
+                    </div>
+                    <div class="model-footer">
+                        <span class="model-price free">有免费额度</span>
+                        <a href="https://yige.baidu.com" target="_blank" class="btn-apply">
+                            申请API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 页脚 -->
-    <footer style="background: #1E293B; color: #E5E7EB; padding: 32px;">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-            <p style="font-size: 14px; color: #6B7280;">© 2026 AICG视频创作软件. All rights reserved.</p>
-        </div>
+    <footer class="footer">
+        <p>© 2026 小天AICG. All rights reserved. | 湖南省长沙市岳麓区枫林三路800号 | <a href="index.html">返回首页</a></p>
     </footer>
 </body>
 </html>
