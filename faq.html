@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见问题 - AICG视频创作软件</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #EDF2F9; font-family: 'Inter', system-ui, sans-serif; }
+        
+        .page-header {
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-text { font-size: 18px; font-weight: 700; color: #1F2937; }
+        
+        .nav-links { display: flex; gap: 8px; }
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6B7280;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { background: #F3F4F6; color: #1F2937; }
+        .nav-link.active { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+        
+        .main-content { max-width: 900px; margin: 0 auto; padding: 48px 32px; }
+        
+        .page-title { font-size: 36px; font-weight: 800; color: #1F2937; margin-bottom: 8px; }
+        .page-subtitle { font-size: 16px; color: #6B7280; margin-bottom: 40px; }
+        
+        .search-box {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #E5E7EB;
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            color: #1F2937;
+        }
+        
+        .search-box input::placeholder { color: #9CA3AF; }
+        
+        .search-btn {
+            padding: 10px 20px;
+            background: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .faq-category {
+            margin-bottom: 40px;
+        }
+        
+        .category-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+        }
+        
+        .faq-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .faq-question:hover { background: #F9FAFB; }
+        
+        .faq-question h4 {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1F2937;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .q-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: #DBEAFE;
+            color: #2563EB;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .faq-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #F3F4F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6B7280;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.open .faq-toggle {
+            background: #DBEAFE;
+            color: #2563EB;
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 0 24px 20px;
+            border-top: 1px solid #F3F4F6;
+        }
+        
+        .faq-item.open .faq-answer { display: block; }
+        
+        .faq-answer p {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.8;
+            padding-top: 16px;
+        }
+        
+        .faq-answer ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+        
+        .faq-answer li {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.8;
+            margin-bottom: 6px;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            text-align: center;
+            margin-top: 48px;
+        }
+        
+        .contact-card h3 { font-size: 24px; margin-bottom: 12px; }
+        .contact-card p { font-size: 15px; opacity: 0.9; margin-bottom: 24px; }
+        
+        .contact-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+        
+        .contact-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .contact-btn:hover { transform: translateY(-2px); }
+        
+        .contact-btn.white {
+            background: white;
+            color: #2563EB;
+        }
+        
+        .contact-btn.outline {
+            border: 2px solid white;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo-link">
+                <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="10" fill="url(#lg)"/>
+                    <circle cx="20" cy="16" r="7" stroke="white" stroke-width="2"/>
+                    <path d="M12 30C12 25 16 22 20 22C24 22 28 25 28 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#2563EB"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">AICG</span>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="faq.html" class="nav-link active">FAQ</a>
+                <a href="community.html" class="nav-link">社区</a>
+                <a href="contact.html" class="nav-link">联系</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">常见问题</h1>
+        <p class="page-subtitle">遇到问题了？在这里查找答案或联系我们的支持团队</p>
+
+        <div class="search-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input type="text" placeholder="搜索问题关键词...">
+            <button class="search-btn">搜索</button>
+        </div>
+
+        <!-- 账户与订阅 -->
+        <div class="faq-category">
+            <h2 class="category-title">
+                <span class="category-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                账户与订阅
+            </h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>如何注册 AICG 账号？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>访问 AICG 官网，点击右上角「立即开始」按钮，使用邮箱或手机号注册账号。注册成功后会自动获得免费试用额度，可以体验基础功能。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>有哪些订阅套餐？如何选择？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>AICG 提供以下套餐：</p>
+                        <ul>
+                            <li><strong>免费版</strong>：每月100次生成额度，适合尝鲜体验</li>
+                            <li><strong>专业版</strong>：¥99/月，无限生成，专属客服支持</li>
+                            <li><strong>企业版</strong>：面议，私有化部署，API调用，定制开发</li>
+                        </ul>
+                        <p>根据你的使用频率和功能需求选择合适的套餐。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>免费额度用完了怎么办？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>免费额度用完后，你可以：</p>
+                        <ul>
+                            <li>升级到付费套餐获得更多额度</li>
+                            <li>参与社区活动获取额外奖励</li>
+                            <li>邀请好友注册获得奖励次数</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 使用与操作 -->
+        <div class="faq-category">
+            <h2 class="category-title">
+                <span class="category-icon" style="background: linear-gradient(135deg, #10B981, #059669);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                </span>
+                使用与操作
+            </h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>如何生成一张图片？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>生成图片非常简单：</p>
+                        <ul>
+                            <li>在输入框中描述你想要的图片内容</li>
+                            <li>选择图片比例（1:1、16:9、9:16等）</li>
+                            <li>选择图片风格（写实、动漫、油画等）</li>
+                            <li>点击「生成」按钮，等待几秒钟即可获得图片</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>视频生成需要多长时间？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>视频生成时间取决于多个因素：</p>
+                        <ul>
+                            <li>视频时长：5秒约30秒，10秒约1分钟，30秒约3分钟</li>
+                            <li>当前队列繁忙程度</li>
+                            <li>服务器负载情况</li>
+                        </ul>
+                        <p>生成过程中可以关闭页面，之后在「历史记录」中查看和下载。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>支持哪些图片和视频格式？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>图片格式：</strong>PNG、JPG、JPEG、WebP，支持最大 4096x4096 分辨率</p>
+                        <p><strong>视频格式：</strong>MP4、MOV，支持 720P 和 1080P 分辨率输出</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>生成的图片可以商用吗？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>付费用户生成的图片和视频可用于个人和商业用途。但请注意：</p>
+                        <ul>
+                            <li>不得生成侵犯他人版权的内容</li>
+                            <li>不得生成虚假新闻、误导性信息</li>
+                            <li>涉及人像时需获得授权许可</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API与技术 -->
+        <div class="faq-category">
+            <h2 class="category-title">
+                <span class="category-icon" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                </span>
+                API 与技术
+            </h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>如何获取 API Key？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>登录账号后，进入「控制台」→「API」页面，点击「创建 API Key」即可生成。请妥善保管你的 API Key，不要泄露给他人。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>API 调用有频率限制吗？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>不同套餐有不同的频率限制：</p>
+                        <ul>
+                            <li>免费版：60次/分钟</li>
+                            <li>专业版：600次/分钟</li>
+                            <li>企业版：无限制，支持自定义</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>SDK 支持哪些编程语言？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>目前官方提供 Python、JavaScript、Java、Go 四种语言的 SDK。你也可以直接调用 REST API 与我们的服务交互。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 支付与退款 -->
+        <div class="faq-category">
+            <h2 class="category-title">
+                <span class="category-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+                    </svg>
+                </span>
+                支付与退款
+            </h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>支持哪些支付方式？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我们支持支付宝、微信支付、信用卡（Visa/MasterCard）、PayPal 等多种支付方式。企业用户可通过银行转账支付。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4><span class="q-badge">Q</span>支持退款吗？</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>付费套餐在购买后7天内，如对服务不满意，可申请全额退款。超过7天或已使用额度超过30%的情况下，不支持退款，但可申请转为其他套餐。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-card">
+            <h3>没有找到答案？</h3>
+            <p>我们的支持团队随时为你解答疑问</p>
+            <div class="contact-btns">
+                <a href="mailto:309888654@qq.com" class="contact-btn white">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    发送邮件
+                </a>
+                <a href="community.html" class="contact-btn outline">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    加入社区
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #1E293B; color: #E5E7EB; padding: 32px; text-align: center;">
+        <p style="font-size: 14px; color: #6B7280;">© 2026 AICG视频创作软件. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

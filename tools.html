@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件下载 - AICG视频创作软件</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <style>
+        body { background: #F5F7FA; }
+        .page-container { max-width: 1200px; margin: 100px auto 60px; padding: 0 24px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { font-size: 32px; font-weight: 700; color: #1F2A3E; margin-bottom: 12px; }
+        .page-header p { font-size: 16px; color: #5A6874; }
+        .intro-card { background: #F5F7FA; border-radius: 16px; padding: 32px; margin-bottom: 32px; border: 1px solid #E8ECF0; }
+        .intro-card p { font-size: 15px; color: #5A6874; line-height: 1.8; }
+        .software-grid { 
+            display: flex; 
+            justify-content: center; 
+            margin-bottom: 40px; 
+        }
+        .software-card { 
+            background: #F5F7FA; 
+            border-radius: 16px; 
+            padding: 24px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+            border: 1px solid #E8ECF0; 
+            transition: all 0.25s ease; 
+            max-width: 320px;
+            width: 100%;
+        }
+        .software-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+        .card-icon { width: 56px; height: 56px; background: #F5F7FA; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+        .card-info h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #1F2A3E; }
+        .card-info p { font-size: 13px; color: #5A6874; line-height: 1.5; }
+        .card-meta { display: flex; gap: 16px; font-size: 12px; color: #5A6874; }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: auto;
+            text-decoration: none;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6366F1;
+        }
+        .card-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #3B82F6; font-size: 14px; margin-bottom: 24px; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#EEF3F9"/>
+                    <path d="M10 16L14 20L22 12" stroke="#1F2A3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>AICG视频创作软件</span>
+            </div>
+            
+            <div class="search-bar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A6874" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" placeholder="搜索软件、工具...">
+                <button class="filter-btn">筛选</button>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link">探索</a>
+                <a href="tools.html" class="nav-link active">软件</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+        
+        <div class="page-header">
+            <h1>软件下载</h1>
+            <p>精选优质软件，助力高效创作</p>
+        </div>
+        
+        <div class="intro-card">
+            <p>本软件是专为Windows 11平台深度定制的下一代AI创作工具。通过原生适配Win11系统，我们充分利用了现代操作系统的底层性能与流畅的交互体验，将前沿的人工智能技术无缝集成到你的桌面端。软件核心聚合了当前业界顶尖的AI大模型，打破了多工具切换的繁琐壁垒，实现了从文本理解到视觉创作的全链路智能化。</p>
+        </div>
+
+        <section class="software-grid">
+            <div class="software-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="23 7 16 12 23 17 23 7"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2"/>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <h3>AICG视频创作软件</h3>
+                    <p>AI驱动的视频生成工具，支持文生视频、图生视频</p>
+                    <div class="card-meta">
+                        <span class="version">v1.0.0</span>
+                        <span class="downloads">⬇️ 1.2k</span>
+                    </div>
+                </div>
+                <a href="aicg.html" class="download-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    立即下载
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AICG视频创作软件</h4>
+                <p>优质软件下载平台</p>
+            </div>
+            <div class="footer-section">
+                <h4>产品</h4>
+                <a href="tools.html">软件下载</a>
+            </div>
+            <div class="footer-section">
+                <h4>关于</h4>
+                <a href="about.html">关于我们</a>
+                <a href="quickstart.html">使用帮助</a>
+            </div>
+            <div class="footer-section">
+                <h4>联系</h4>
+                <p>QQ群：18737262</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 AICG视频创作软件. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
