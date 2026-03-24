@@ -155,7 +155,7 @@ video = client.generate(
                             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                         </svg>
                     </div>
-                    <div class="monitor-value" data-target="28">0</div>
+                    <div class="monitor-value" data-target="80">0</div>
                     <div class="monitor-label">活跃用户</div>
                     <div class="monitor-chart">
                         <svg viewBox="0 0 100 30" class="sparkline">
@@ -620,7 +620,8 @@ video = client.generate(
                 if (target > 10000) {
                     el.textContent = (current / 1000).toFixed(1) + 'K+';
                 } else if (target < 100) {
-                    el.textContent = (current / 1000).toFixed(3) + 'K+';
+                    const val = (current / 1000).toFixed(3);
+                    el.textContent = parseFloat(val) + 'K+';
                 } else {
                     el.textContent = current.toLocaleString();
                 }
