@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>示例代码 - AICG视频创作软件</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #EDF2F9; font-family: 'Inter', system-ui, sans-serif; }
+        
+        .page-header {
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-text { font-size: 18px; font-weight: 700; color: #1F2937; }
+        
+        .nav-links { display: flex; gap: 8px; }
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6B7280;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { background: #F3F4F6; color: #1F2937; }
+        .nav-link.active { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+        
+        .main-content { max-width: 1000px; margin: 0 auto; padding: 48px 32px; }
+        
+        .page-title { font-size: 36px; font-weight: 800; color: #1F2937; margin-bottom: 8px; }
+        .page-subtitle { font-size: 16px; color: #6B7280; margin-bottom: 40px; }
+        
+        .example-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #E5E7EB;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        
+        .example-header {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        
+        .example-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .lang-badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .lang-badge.python { background: #DBEAFE; color: #2563EB; }
+        .lang-badge.javascript { background: #FEF3C7; color: #D97706; }
+        .lang-badge.curl { background: #F3F4F6; color: #374151; }
+        
+        .example-title h3 { font-size: 16px; font-weight: 600; color: #1F2937; }
+        
+        .copy-btn {
+            padding: 6px 12px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background: white;
+            font-size: 12px;
+            color: #6B7280;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+        
+        .copy-btn:hover { background: #F9FAFB; color: #1F2937; }
+        
+        .code-block {
+            background: #1F2937;
+            padding: 24px;
+            overflow-x: auto;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            color: #E5E7EB;
+            line-height: 1.7;
+        }
+        
+        .keyword { color: #C084FC; }
+        .string { color: #86EFAC; }
+        .function { color: #60A5FA; }
+        .variable { color: #F472B6; }
+        
+        .example-desc {
+            padding: 16px 24px;
+            font-size: 14px;
+            color: #6B7280;
+            background: #F9FAFB;
+            border-top: 1px solid #F3F4F6;
+        }
+        
+        .category { margin-bottom: 40px; }
+        .category-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+        }
+        
+        .category-icon.orange { background: linear-gradient(135deg, #F59E0B, #D97706); }
+        .category-icon.gray { background: linear-gradient(135deg, #6B7280, #4B5563); }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo-link">
+                <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="10" fill="url(#lg)"/>
+                    <circle cx="20" cy="16" r="7" stroke="white" stroke-width="2"/>
+                    <path d="M12 30C12 25 16 22 20 22C24 22 28 25 28 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#2563EB"/></linearGradient></defs>
+                </svg>
+                <span class="logo-text">AICG</span>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="tools.html" class="nav-link">软件</a>
+                <a href="models.html" class="nav-link">模型</a>
+                <a href="api.html" class="nav-link">API</a>
+                <a href="examples.html" class="nav-link active">示例</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">示例代码</h1>
+        <p class="page-subtitle">各种编程语言的 API 调用示例，快速上手 AICG</p>
+
+        <!-- Python 示例 -->
+        <div class="category">
+            <h2 class="category-title">
+                <span class="category-icon">Py</span>
+                Python
+            </h2>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">
+                        <span class="lang-badge python">Python</span>
+                        <h3>文生图 - 生成图片</h3>
+                    </div>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        复制
+                    </button>
+                </div>
+                <div class="code-block">
+                    <pre><span class="keyword">import</span> requests
+
+api_key = <span class="string">"YOUR_API_KEY"</span>
+url = <span class="string">"https://api.aicg.com/v1/images/generations"</span>
+
+headers = {
+    <span class="string">"Authorization"</span>: <span class="string">f"Bearer <span class="variable">{api_key}</span>"</span>,
+    <span class="string">"Content-Type"</span>: <span class="string">"application/json"</span>
+}
+
+data = {
+    <span class="string">"prompt"</span>: <span class="string">"一只可爱的猫咪在草地上玩耍"</span>,
+    <span class="string">"model"</span>: <span class="string">"dall-e-3"</span>,
+    <span class="string">"n"</span>: <span class="variable">1</span>,
+    <span class="string">"size"</span>: <span class="string">"1024x1024"</span>
+}
+
+response = requests.<span class="function">post</span>(url, json=data, headers=headers)
+<span class="function">print</span>(response.<span class="function">json</span>())</pre>
+                </div>
+                <div class="example-desc">使用 Python requests 库调用文生图 API，生成一张猫咪图片。</div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">
+                        <span class="lang-badge python">Python</span>
+                        <h3>文生视频 - 生成视频</h3>
+                    </div>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        复制
+                    </button>
+                </div>
+                <div class="code-block">
+                    <pre><span class="keyword">import</span> requests
+
+api_key = <span class="string">"YOUR_API_KEY"</span>
+url = <span class="string">"https://api.aicg.com/v1/videos/generations"</span>
+
+headers = {
+    <span class="string">"Authorization"</span>: <span class="string">f"Bearer <span class="variable">{api_key}</span>"</span>,
+    <span class="string">"Content-Type"</span>: <span class="string">"application/json"</span>
+}
+
+data = {
+    <span class="string">"prompt"</span>: <span class="string">"日出时分，海浪拍打金色沙滩"</span>,
+    <span class="string">"model"</span>: <span class="string">"sora"</span>,
+    <span class="string">"duration"</span>: <span class="variable">10</span>
+}
+
+response = requests.<span class="function">post</span>(url, json=data, headers=headers)
+result = response.<span class="function">json</span>()
+<span class="function">print</span>(<span class="string">f"视频生成中，ID: <span class="variable">{result['id']}</span>"</span>)</pre>
+                </div>
+                <div class="example-desc">使用 Python 调用文生视频 API，生成一段海浪日出视频。</div>
+            </div>
+        </div>
+
+        <!-- JavaScript 示例 -->
+        <div class="category">
+            <h2 class="category-title">
+                <span class="category-icon orange">JS</span>
+                JavaScript / Node.js
+            </h2>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">
+                        <span class="lang-badge javascript">JavaScript</span>
+                        <h3>Node.js - 文生图</h3>
+                    </div>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        复制
+                    </button>
+                </div>
+                <div class="code-block">
+                    <pre><span class="keyword">const</span> axios = <span class="function">require</span>(<span class="string">'axios'</span>);
+
+<span class="keyword">async function</span> <span class="function">generateImage</span>() {
+  <span class="keyword">const</span> response = <span class="keyword">await</span> axios.<span class="function">post</span>(
+    <span class="string">'https://api.aicg.com/v1/images/generations'</span>,
+    {
+      prompt: <span class="string">'一只可爱的猫咪在草地上玩耍'</span>,
+      model: <span class="string">'dall-e-3'</span>,
+      n: <span class="variable">1</span>,
+      size: <span class="string">'1024x1024'</span>
+    },
+    {
+      headers: {
+        <span class="string">'Authorization'</span>: <span class="string">'Bearer YOUR_API_KEY'</span>,
+        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>
+      }
+    }
+  );
+  
+  <span class="function">console</span>.<span class="function">log</span>(response.data);
+}
+
+<span class="function">generateImage</span>();</pre>
+                </div>
+                <div class="example-desc">使用 Node.js axios 库调用文生图 API，使用 async/await 语法。</div>
+            </div>
+        </div>
+
+        <!-- cURL 示例 -->
+        <div class="category">
+            <h2 class="category-title">
+                <span class="category-icon gray">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+                </span>
+                cURL
+            </h2>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">
+                        <span class="lang-badge curl">cURL</span>
+                        <h3>命令行快速测试</h3>
+                    </div>
+                    <button class="copy-btn" onclick="copyCode(this)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        复制
+                    </button>
+                </div>
+                <div class="code-block">
+                    <pre>curl -X POST https://api.aicg.com/v1/images/generations \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "一只可爱的猫咪在草地上玩耍",
+    "model": "dall-e-3",
+    "n": 1,
+    "size": "1024x1024"
+  }'</pre>
+                </div>
+                <div class="example-desc">使用 cURL 命令行工具快速测试 API，无需安装任何编程语言环境。</div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #1E293B; color: #E5E7EB; padding: 32px; text-align: center;">
+        <p style="font-size: 14px; color: #6B7280;">© 2026 AICG视频创作软件. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function copyCode(btn) {
+            const code = btn.closest('.example-card').querySelector('pre').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 已复制';
+                setTimeout(() => {
+                    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 复制';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
