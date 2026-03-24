@@ -3,77 +3,877 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <API>API - AICG</API>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <title>大模型API申请地址 - 小天AICG</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background: #F5F7FA; }
-        .doc-page { max-width: 900px; margin: 120px auto 60px; padding: 0 24px; }
-        .doc-hero { text-align: center; margin-bottom: 48px; }
-        .doc-hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 16px; color: #1A1A1A; }
-        .doc-hero p { font-size: 18px; color: #5F6368; }
-        .doc-content { background: #F5F7FA; border-radius: 20px; padding: 40px; }
-        .doc-content h2 { font-size: 28px; color: #1A1A1A; margin: 32px 0 16px; }
-        .doc-content p { font-size: 15px; color: #5F6368; line-height: 1.8; margin-bottom: 16px; }
-        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #00C853; font-size: 14px; margin-bottom: 24px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); 
+            font-family: 'Inter', system-ui, sans-serif; 
+            min-height: 100vh;
+            color: #E2E8F0;
+        }
+        
+        .header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #F8FAFC;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .logo svg {
+            width: 36px;
+            height: 36px;
+        }
+        
+        .nav-links { display: flex; gap: 8px; }
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { background: rgba(255,255,255,0.1); color: #F8FAFC; }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 32px 60px;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60A5FA, #A78BFA, #F472B6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #94A3B8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #60A5FA;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #64748B;
+            margin-top: 4px;
+        }
+        
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F8FAFC;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            color: #60A5FA;
+        }
+        
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(255,255,255,0.05);
+            color: #94A3B8;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .category-tab:hover, .category-tab.active {
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        
+        .api-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .api-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-color, #3B82F6);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .api-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .api-card:hover::before {
+            opacity: 1;
+        }
+        
+        .api-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .api-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--card-color, #3B82F6);
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .api-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #F8FAFC;
+            margin-bottom: 4px;
+        }
+        
+        .api-info .company {
+            font-size: 13px;
+            color: #64748B;
+        }
+        
+        .api-desc {
+            font-size: 14px;
+            color: #94A3B8;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .api-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .api-feature {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: rgba(255,255,255,0.05);
+            color: #94A3B8;
+        }
+        
+        .api-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .api-price {
+            font-size: 13px;
+            color: #10B981;
+            font-weight: 500;
+        }
+        
+        .api-price.free {
+            color: #10B981;
+        }
+        
+        .api-price.paid {
+            color: #F59E0B;
+        }
+        
+        .btn-apply {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .btn-apply:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-apply svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        .tip-section {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-top: 48px;
+        }
+        
+        .tip-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #10B981;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tip-section ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #94A3B8;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 32px;
+            text-align: center;
+        }
+        
+        .footer p {
+            color: #64748B;
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: #60A5FA;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero-stats { flex-direction: column; gap: 24px; }
+            .api-grid { grid-template-columns: 1fr; }
+            .category-tabs { justify-content: center; }
+        }
     </style>
 </head>
 <body>
-    <header class="top-nav">
-        <div class="nav-left">
-            <a href="../index.html" class="logo">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <rect width="32" height="32" rx="8" fill="#EEF3F9"/>
-                    <path d="M10 16L14 20L22 12" stroke="#1F2A3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="12" fill="#3B82F6"/>
+                    <circle cx="20" cy="16" r="7" stroke="white" stroke-width="2"/>
+                    <path d="M12 30C12 25 16 22 20 22C24 22 28 25 28 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                <span>AICG</span>
+                <span>小天AICG</span>
             </a>
-        </div>
-        <nav class="nav-menu">
-            <a href="quickstart.html" class="nav-link">Manual</a>
-            <a href="quickstart.html" class="nav-link">Download</a>
-            <a href="support.html" class="nav-link">Support</a>
-        </nav>
-        <div class="nav-right">
-            <a href="#" class="btn-console">N/A</a>
-            <a href="#" class="btn-login">N/A</a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="tools.html" class="nav-link">软件</a>
+                <a href="about.html" class="nav-link">关于</a>
+            </nav>
         </div>
     </header>
-    <div class="main-container">
-        <main class="doc-page">
-            <a href="../index.html" class="back-link">Back</a>
-            <div class="doc-hero">
-                <h1>API</h1>
-                <p>Content</p>
+
+    <section class="hero">
+        <h1>🚀 大模型API申请地址大全</h1>
+        <p>收录国内外主流大模型API申请入口，助你快速接入AI能力</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-value">15+</div>
+                <div class="stat-label">大模型平台</div>
             </div>
-            <div class="doc-content">
-                <h2>Intro</h2>
-                <p>Content here.</p>
+            <div class="stat-item">
+                <div class="stat-value">50+</div>
+                <div class="stat-label">可用模型</div>
             </div>
-        </main>
-    </div>
+            <div class="stat-item">
+                <div class="stat-value">实时</div>
+                <div class="stat-label">更新维护</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <!-- 国际大模型 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                国际大模型
+            </h2>
+            <div class="api-grid">
+                <!-- OpenAI -->
+                <div class="api-card" style="--card-color: #10A37F;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: #10A37F;">O</div>
+                        <div class="api-info">
+                            <h3>OpenAI</h3>
+                            <div class="company">OpenAI Inc. 美国</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">全球领先的AI研究公司，提供GPT-4、GPT-4 Turbo、GPT-3.5等强大模型，支持对话、代码生成、图像生成等。</p>
+                    <div class="api-features">
+                        <span class="api-feature">GPT-4 Turbo</span>
+                        <span class="api-feature">DALL·E 3</span>
+                        <span class="api-feature">Whisper</span>
+                        <span class="api-feature">Embeddings</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">按量付费</span>
+                        <a href="https://platform.openai.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Claude -->
+                <div class="api-card" style="--card-color: #D97706;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: #D97706;">C</div>
+                        <div class="api-info">
+                            <h3>Claude</h3>
+                            <div class="company">Anthropic 美国</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">Anthropic开发的AI助手，以安全性和长上下文著称，Claude 3系列支持200K上下文，擅长分析和创意写作。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Claude 3 Opus</span>
+                        <span class="api-feature">Claude 3 Sonnet</span>
+                        <span class="api-feature">200K上下文</span>
+                        <span class="api-feature">视觉理解</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">按量付费</span>
+                        <a href="https://console.anthropic.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gemini -->
+                <div class="api-card" style="--card-color: #4285F4;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
+                        <div class="api-info">
+                            <h3>Google Gemini</h3>
+                            <div class="company">Google 美国</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">Google最新多模态大模型，支持文本、图像、视频理解，Gemini Pro/Ultra提供强大的推理和创作能力。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Gemini Pro</span>
+                        <span class="api-feature">Gemini Ultra</span>
+                        <span class="api-feature">多模态</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://makersuite.google.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mistral -->
+                <div class="api-card" style="--card-color: #FF7000;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: #FF7000;">M</div>
+                        <div class="api-info">
+                            <h3>Mistral AI</h3>
+                            <div class="company">Mistral AI 法国</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">欧洲领先的AI公司，开源模型Mistral 7B、Mixtral 8x7B性能优异，API服务提供企业级支持。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Mistral Large</span>
+                        <span class="api-feature">Mixtral 8x7B</span>
+                        <span class="api-feature">开源模型</span>
+                        <span class="api-feature">欧洲部署</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price paid">按量付费</span>
+                        <a href="https://console.mistral.ai" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 国产大模型 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                    <line x1="4" y1="22" x2="4" y2="15"/>
+                </svg>
+                国产大模型
+            </h2>
+            <div class="api-grid">
+                <!-- 文心一言 -->
+                <div class="api-card" style="--card-color: #2563EB;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #2563EB, #3B82F6);">文</div>
+                        <div class="api-info">
+                            <h3>文心一言</h3>
+                            <div class="company">百度</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">百度自研大语言模型，文心4.0支持128K上下文，具备强大的中文理解和生成能力，千帆平台提供稳定API服务。</p>
+                    <div class="api-features">
+                        <span class="api-feature">文心4.0</span>
+                        <span class="api-feature">128K上下文</span>
+                        <span class="api-feature">企业部署</span>
+                        <span class="api-feature">中文优化</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://console.bce.baidu.com/qianfan" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 通义千问 -->
+                <div class="api-card" style="--card-color: #FF6A00;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #FF6A00, #FF8C00);">通</div>
+                        <div class="api-info">
+                            <h3>通义千问</h3>
+                            <div class="company">阿里巴巴</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">阿里云大模型，Qwen系列支持100K+上下文，通义千问Max/Turbo/Plus多版本可选，性价比高。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Qwen-Max</span>
+                        <span class="api-feature">100K+上下文</span>
+                        <span class="api-feature">多模态</span>
+                        <span class="api-feature">免费试用</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://dashscope.console.aliyun.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 讯飞星火 -->
+                <div class="api-card" style="--card-color: #00B4D8;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #00B4D8, #0096C7);">星</div>
+                        <div class="api-info">
+                            <h3>讯飞星火</h3>
+                            <div class="company">科大讯飞</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">讯飞自研认知大模型，星火4.0支持多模态交互，语音能力突出，适合智能客服、教育等场景。</p>
+                    <div class="api-features">
+                        <span class="api-feature">星火4.0</span>
+                        <span class="api-feature">语音合成</span>
+                        <span class="api-feature">多模态</span>
+                        <span class="api-feature">行业定制</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://console.xfyun.cn/services/bm3" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 智谱AI -->
+                <div class="api-card" style="--card-color: #6366F1;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">智</div>
+                        <div class="api-info">
+                            <h3>智谱AI</h3>
+                            <div class="company">北京智谱华章</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">清华系AI公司，GLM-4系列支持128K上下文，开源ChatGLM生态活跃，学术背景深厚。</p>
+                    <div class="api-features">
+                        <span class="api-feature">GLM-4</span>
+                        <span class="api-feature">128K上下文</span>
+                        <span class="api-feature">开源模型</span>
+                        <span class="api-feature">Function Call</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://open.bigmodel.cn" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 月之暗面 -->
+                <div class="api-card" style="--card-color: #A855F7;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #A855F7, #7C3AED);">月</div>
+                        <div class="api-info">
+                            <h3>月之暗面 Kimi</h3>
+                            <div class="company">月之暗面科技</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">长文本处理能力领先，Moonshot支持200K超长上下文，适合文档分析、论文阅读等场景。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Moonshot</span>
+                        <span class="api-feature">200K上下文</span>
+                        <span class="api-feature">长文档</span>
+                        <span class="api-feature">联网搜索</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://platform.moonshot.cn" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DeepSeek -->
+                <div class="api-card" style="--card-color: #0EA5E9;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">D</div>
+                        <div class="api-info">
+                            <h3>DeepSeek</h3>
+                            <div class="company">深度求索</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">国产模型性价比之王，DeepSeek-V3性能对标GPT-4，价格极低，适合个人开发者和小团队。</p>
+                    <div class="api-features">
+                        <span class="api-feature">DeepSeek-V3</span>
+                        <span class="api-feature">DeepSeek-Coder</span>
+                        <span class="api-feature">超低价</span>
+                        <span class="api-feature">代码专精</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">超低价</span>
+                        <a href="https://platform.deepseek.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 字节豆包 -->
+                <div class="api-card" style="--card-color: #00D4AA;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #00D4AA, #00B894);">豆</div>
+                        <div class="api-info">
+                            <h3>字节豆包</h3>
+                            <div class="company">字节跳动火山引擎</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">字节跳动大模型服务，Doubao系列性价比高，接入简单，适合快速落地AI应用。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Doubao-Pro</span>
+                        <span class="api-feature">多模态</span>
+                        <span class="api-feature">企业级</span>
+                        <span class="api-feature">免费试用</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://console.volcengine.com/ark" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MiniMax -->
+                <div class="api-card" style="--card-color: #EC4899;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);">M</div>
+                        <div class="api-info">
+                            <h3>MiniMax</h3>
+                            <div class="company">MiniMax稀宇科技</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">新生代AI公司，abab系列模型支持角色扮演、语音合成，适合娱乐、社交类应用。</p>
+                    <div class="api-features">
+                        <span class="api-feature">abab-6</span>
+                        <span class="api-feature">角色扮演</span>
+                        <span class="api-feature">语音合成</span>
+                        <span class="api-feature">多模态</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://www.minimaxi.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 百川智能 -->
+                <div class="api-card" style="--card-color: #14B8A6;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #14B8A6, #0D9488);">百</div>
+                        <div class="api-info">
+                            <h3>百川智能</h3>
+                            <div class="company">百川智能</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">前搜狗CEO王小川创立，Baichuan系列开源模型生态活跃，支持商用。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Baichuan-4</span>
+                        <span class="api-feature">开源模型</span>
+                        <span class="api-feature">可商用</span>
+                        <span class="api-feature">私有化部署</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://platform.baichuan-ai.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 零一万物 -->
+                <div class="api-card" style="--card-color: #F43F5E;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #F43F5E, #E11D48);">零</div>
+                        <div class="api-info">
+                            <h3>零一万物</h3>
+                            <div class="company">零一万物科技</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">李开复博士创立，Yi系列模型专注中文优化，开源版本可本地部署。</p>
+                    <div class="api-features">
+                        <span class="api-feature">Yi-Large</span>
+                        <span class="api-feature">开源模型</span>
+                        <span class="api-feature">中文优化</span>
+                        <span class="api-feature">多尺寸</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://platform.lingyiwanwu.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 小米 MiMo -->
+                <div class="api-card" style="--card-color: #FF6900;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #FF6900, #FF8C00);">米</div>
+                        <div class="api-info">
+                            <h3>小米 MiMo</h3>
+                            <div class="company">小米科技</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">小米AI开放平台，MiMo系列支持1M超长上下文，多模态能力，限时免费体验。</p>
+                    <div class="api-features">
+                        <span class="api-feature">MiMo-V2-Pro</span>
+                        <span class="api-feature">1M上下文</span>
+                        <span class="api-feature">多模态</span>
+                        <span class="api-feature">限时免费</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">限时免费</span>
+                        <a href="https://platform.xiaomimimo.com" target="_blank" class="btn-apply">
+                            申请API
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 开源模型 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                开源模型平台
+            </h2>
+            <div class="api-grid">
+                <!-- Hugging Face -->
+                <div class="api-card" style="--card-color: #FFD21E;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: #FFD21E; color: #1A1A1A;">🤗</div>
+                        <div class="api-info">
+                            <h3>Hugging Face</h3>
+                            <div class="company">全球最大AI社区</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">全球最大的AI模型托管平台，汇聚数十万开源模型，支持Inference API快速调用。</p>
+                    <div class="api-features">
+                        <span class="api-feature">模型托管</span>
+                        <span class="api-feature">Inference API</span>
+                        <span class="api-feature">开源社区</span>
+                        <span class="api-feature">免费额度</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">有免费额度</span>
+                        <a href="https://huggingface.co" target="_blank" class="btn-apply">
+                            访问平台
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ModelScope -->
+                <div class="api-card" style="--card-color: #6366F1;">
+                    <div class="api-header">
+                        <div class="api-icon" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">魔</div>
+                        <div class="api-info">
+                            <h3>ModelScope 魔搭</h3>
+                            <div class="company">阿里巴巴达摩院</div>
+                        </div>
+                    </div>
+                    <p class="api-desc">国内领先的模型开源社区，汇集阿里及社区优质模型，支持免费API调用和本地部署。</p>
+                    <div class="api-features">
+                        <span class="api-feature">模型托管</span>
+                        <span class="api-feature">免费API</span>
+                        <span class="api-feature">中文模型</span>
+                        <span class="api-feature">本地部署</span>
+                    </div>
+                    <div class="api-footer">
+                        <span class="api-price free">完全免费</span>
+                        <a href="https://modelscope.cn" target="_blank" class="btn-apply">
+                            访问平台
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 提示信息 -->
+        <div class="tip-section">
+            <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="16" x2="12" y2="12"/>
+                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+                申请建议
+            </h3>
+            <ul>
+                <li><strong>新手推荐</strong>：优先尝试有免费额度的平台，如 DeepSeek、智谱AI、月之暗面</li>
+                <li><strong>长文本场景</strong>：推荐月之暗面(200K)、小米MiMo(1M上下文)</li>
+                <li><strong>代码生成</strong>：推荐 DeepSeek-Coder、OpenAI GPT-4</li>
+                <li><strong>性价比优先</strong>：DeepSeek 价格最低，性能接近GPT-4</li>
+                <li><strong>企业部署</strong>：推荐百度千帆、阿里云、火山引擎</li>
+                <li><strong>开源自部署</strong>：Hugging Face、ModelScope 下载模型本地运行</li>
+            </ul>
+        </div>
+    </main>
+
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Product</h4>
-                <a href="tools.html">Tools</a>
-            </div>
-            <div class="footer-section">
-                <h4>Docs</h4>
-                <a href="quickstart.html">Quick Start</a>
-            </div>
-            <div class="footer-section">
-                <h4>Company</h4>
-                <a href="about.html">About</a>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <a href="faq.html">FAQ</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>2026 AICG. All rights reserved.</p>
-        </div>
+        <p>© 2026 小天AICG. All rights reserved. | <a href="index.html">返回首页</a></p>
     </footer>
 </body>
 </html>
